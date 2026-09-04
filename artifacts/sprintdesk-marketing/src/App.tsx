@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,6 +8,7 @@ import {
   Layers3,
   Menu,
   Play,
+  RotateCcw,
   Sparkles,
   Target,
   X,
@@ -28,7 +29,6 @@ const stageLabels: { id: Stage; label: string }[] = [
   { id: 'triage', label: 'Triage' },
   { id: 'focus', label: 'Focus' },
   { id: 'execute', label: 'Execute' },
-  { id: 'monitor', label: 'Monitor' },
   { id: 'automate', label: 'Automate' },
 ];
 
@@ -81,6 +81,32 @@ function Meta({ title, description, path = '' }: { title: string; description: s
 
 function Logo() {
   return <Link href="/" className="brand" data-testid="link-logo" aria-label="SprintDesk home"><img className="brand-logo" src="/sprintdesk-logo.png" alt="SprintDesk" /></Link>;
+}
+
+function MotionObserver() {
+  useEffect(() => {
+    const shell = document.querySelector<HTMLElement>('.site-shell');
+    shell?.classList.add('motion-ready');
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach((node) => node.classList.add('is-visible'));
+      return () => shell?.classList.remove('motion-ready');
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    nodes.forEach((node) => observer.observe(node));
+    return () => {
+      observer.disconnect();
+      shell?.classList.remove('motion-ready');
+    };
+  }, []);
+  return null;
 }
 
 const productLinks = [
@@ -173,7 +199,7 @@ function Footer() {
 }
 
 function Shell({ children }: { children: ReactNode }) {
-  return <div className="site-shell"><Navbar />{children}<Footer /></div>;
+  return <div className="site-shell"><MotionObserver /><Navbar />{children}<Footer /></div>;
 }
 
 function SectionHeading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
@@ -197,6 +223,129 @@ function CaptureDemo({ compact = false }: { compact?: boolean }) {
       </main>
     </div>
   </div>;
+}
+
+type HeroPhase = 'capture' | 'triage' | 'personal' | 'team-preview' | 'team';
+
+const heroPhases: { id: HeroPhase; label: string }[] = [
+  { id: 'capture', label: 'Capture' },
+  { id: 'triage', label: 'Triage' },
+  { id: 'personal', label: 'Personal Task Flow' },
+  { id: 'team-preview', label: 'Team handoff' },
+  { id: 'team', label: 'Team Sprint Board' },
+];
+
+function HeroWorkflow() {
+  const [phase, setPhase] = useState<HeroPhase>('capture');
+  const [playing, setPlaying] = useState(true);
+  const phaseIndex = heroPhases.findIndex((item) => item.id === phase);
+  const replay = () => {
+    setPhase('capture');
+    setPlaying(true);
+  };
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setPhase('team');
+      setPlaying(false);
+      return;
+    }
+    if (!playing) return;
+    const timeout = window.setTimeout(() => {
+      if (phaseIndex >= heroPhases.length - 1) {
+        setPlaying(false);
+      } else {
+        setPhase(heroPhases[phaseIndex + 1].id);
+      }
+    }, phase === 'capture' ? 1700 : 2900);
+    return () => window.clearTimeout(timeout);
+  }, [phase, phaseIndex, playing]);
+
+  return (
+    <div className="hero-workflow" data-testid="demo-hero-workflow">
+      <div className="hero-demo-toolbar">
+        <div className="hero-demo-context"><span className="status-light" /> sprintdesk / connected workflow</div>
+        <div className="hero-demo-state" aria-live="polite">{playing ? 'PLAYING' : 'PAUSED'} <span>{phaseIndex + 1} / {heroPhases.length}</span></div>
+      </div>
+      <div className="hero-demo-progress" aria-hidden="true">
+        <i style={{ width: `${((phaseIndex + 1) / heroPhases.length) * 100}%` }} />
+      </div>
+      <div className={`hero-demo-canvas phase-${phase}`} aria-live="polite">
+        {phase === 'capture' && (
+          <div className="hero-capture-state">
+            <div className="hero-demo-sidebar">
+              <span className="sidebar-overline">Workspace</span>
+              <strong><span className="side-dot" /> Personal</strong>
+              <span>Team / Core</span>
+              <span>Calendar</span>
+            </div>
+            <div className="hero-demo-content">
+              <div className="hero-demo-heading"><div><span className="eyebrow">Personal space</span><h3>Capture Inbox</h3></div><span className="demo-count">05 incoming</span></div>
+              <div className="hero-capture-entry"><Sparkles size={15} /><span>Fix mobile navbar</span><b>captured now</b></div>
+              <div className="hero-task-list">
+                {['Review onboarding flow', 'Follow up with Sarah', 'Check sprint blockers', 'Client feedback idea'].map((task, index) => (
+                  <div className="hero-task-row" key={task}><span className="task-check" /><span>{task}</span><small>{index + 1}h</small></div>
+                ))}
+              </div>
+              <div className="hero-demo-footnote"><span className="raw-marker">RAW THOUGHT</span><span className="thin-connector" /><span>Private until you choose otherwise</span></div>
+            </div>
+          </div>
+        )}
+        {phase === 'triage' && (
+          <div className="hero-triage-state">
+            <div className="hero-underlay">
+              <span className="eyebrow">Capture Inbox</span><h3>Fix mobile navbar</h3><p>Captured a moment ago</p>
+            </div>
+            <div className="triage-panel">
+              <div className="triage-panel-top"><span className="eyebrow">Triage task</span><strong>01 / 04</strong></div>
+              <h3>Fix mobile navbar</h3>
+              <p className="triage-description">Refine the navigation at the 390px breakpoint before the next release.</p>
+              <div className="triage-fields">
+                <div><span>Workspace</span><strong>Personal <small>⌄</small></strong></div>
+                <div><span>Board column</span><strong>Todo <small>⌄</small></strong></div>
+                <div><span>Priority</span><strong className="accent-text">High <small>⌄</small></strong></div>
+              </div>
+              <button className="button-primary" onClick={() => setPhase('personal')} data-testid="button-hero-triage">Move to Personal Task Flow <ArrowRight size={14} /></button>
+            </div>
+          </div>
+        )}
+        {phase === 'personal' && (
+          <div className="hero-board-state">
+            <div className="board-state-heading"><div><span className="eyebrow">Personal workspace</span><h3>Personal Task Flow</h3></div><span className="demo-count">4 due today</span></div>
+            <div className="hero-columns">
+              {[
+                ['Backlog', ['Client proposal']],
+                ['Todo', ['Fix mobile navbar', 'Review feedback']],
+                ['In Progress', ['Onboarding notes']],
+                ['Review', ['Release checklist']],
+              ].map(([name, tasks]) => <div className="hero-column" key={name as string}><div className="hero-column-title"><span>{name}</span><b>{(tasks as string[]).length}</b></div>{(tasks as string[]).map((task) => <div className={`hero-card ${task === 'Fix mobile navbar' ? 'selected-card' : ''}`} key={task}><strong>{task}</strong><small>{task === 'Fix mobile navbar' ? 'Todo · High' : 'Personal task'}</small></div>)}</div>)}
+            </div>
+            <div className="board-state-foot"><span className="route-chip">PERSONAL TASK FLOW</span><span>One thought, now in context.</span></div>
+          </div>
+        )}
+        {(phase === 'team-preview' || phase === 'team') && (
+          <div className={`hero-board-state team-state ${phase === 'team' ? 'is-settled' : 'is-handoff'}`}>
+            <div className="board-state-heading"><div><span className="eyebrow">Team workspace / Sprint 04</span><h3>Team Sprint Board</h3></div><span className="demo-count accent-text">9 / 12 points</span></div>
+            <div className="hero-columns">
+              {[
+                ['Backlog', ['Release planning']],
+                ['Todo', ['Onboarding improvements']],
+                ['In Progress', ['Fix mobile navbar']],
+                ['Review', ['API documentation']],
+              ].map(([name, tasks]) => <div className="hero-column" key={name as string}><div className="hero-column-title"><span>{name}</span><b>{(tasks as string[]).length}</b></div>{(tasks as string[]).map((task) => <div className={`hero-card ${task === 'Fix mobile navbar' ? 'selected-card' : ''}`} key={task}><strong>{task}</strong><small>{task === 'Fix mobile navbar' ? 'Alex Morgan · 3 pts' : 'Sarah Chen · 5 pts'}</small><em>{task === 'Fix mobile navbar' ? 'Website Improvements · Frontend' : 'Product'}</em></div>)}</div>)}
+            </div>
+            <div className="board-state-foot"><span className="route-chip route-team">TEAM SPRINT BOARD</span><span>{phase === 'team-preview' ? 'The task is entering shared execution.' : 'Progress is visible where the work happens.'}</span></div>
+          </div>
+        )}
+      </div>
+      <div className="hero-demo-footer">
+        <div className="hero-phase-list" role="list" aria-label="Workflow progress">
+          {heroPhases.map((item, index) => <div role="listitem" key={item.id}><button className={phase === item.id ? 'active' : phaseIndex > index ? 'complete' : ''} onClick={() => { setPhase(item.id); setPlaying(false); }} aria-current={phase === item.id ? 'step' : undefined} data-testid={`button-hero-phase-${item.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</button></div>)}
+        </div>
+        {!playing && <button className="replay-button" onClick={replay} aria-label="Replay workflow demonstration" data-testid="button-replay-workflow"><RotateCcw size={13} /> Replay</button>}
+      </div>
+    </div>
+  );
 }
 
 function BoardDemo({ full = false }: { full?: boolean }) {
@@ -227,10 +376,13 @@ function CommandCenter() {
 
 function CalendarDemo() {
   const dates = Array.from({ length: 35 }, (_, i) => i - 1);
+  const [selectedDate, setSelectedDate] = useState<number | null>(12);
+  const calendarTasks: Record<number, string> = { 4: 'Client proposal', 9: 'Mobile navbar', 14: 'Sprint review', 21: 'Onboarding update', 28: 'Release planning' };
   return <div className="calendar" data-testid="demo-calendar">
-    <div className="calendar-month"><strong>September 2025</strong><span>MONTH VIEW · 4 DUE</span></div>
+    <div className="calendar-month"><strong>September 2026</strong><span>MONTH VIEW · 5 DUE</span></div>
     <div className="calendar-days">{['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((day) => <span key={day}>{day}</span>)}</div>
-    <div className="calendar-dates">{dates.map((date, index) => <div className={`date ${date === 12 ? 'active' : ''}`} key={index}>{date > 0 && date <= 30 && <><b>{date}</b>{[5, 12, 18, 25].includes(date) && <i className={date === 12 ? 'violet' : ''} />}</>}</div>)}</div>
+    <div className="calendar-dates">{dates.map((date, index) => <button className={`date ${date === selectedDate ? 'active' : ''}`} key={index} onClick={() => date > 0 && date <= 30 && setSelectedDate(date)} aria-label={calendarTasks[date] ? `${date} September: ${calendarTasks[date]}` : `${date} September`} data-testid={`button-calendar-date-${date}`}>{date > 0 && date <= 30 && <><b>{date}</b>{calendarTasks[date] && <i className={date === selectedDate ? 'violet' : ''} />}</>}</button>)}</div>
+    {selectedDate && calendarTasks[selectedDate] && <div className="calendar-preview"><span>SEP {String(selectedDate).padStart(2, '0')}</span><strong>{calendarTasks[selectedDate]}</strong><button onClick={() => setSelectedDate(null)} aria-label="Close calendar detail" data-testid="button-close-calendar-preview"><X size={13} /></button></div>}
   </div>;
 }
 
@@ -250,12 +402,12 @@ function AutomationDemo() {
 function WorkspaceSwitcher() {
   const [mode, setMode] = useState<'personal' | 'team'>('personal');
   const personal = mode === 'personal';
-  return <section className="workspace-section">
+  return <section className="workspace-section" data-reveal>
     <div className="container-wide">
       <div className="workspace-top"><div><div className="eyebrow">One product, two work modes</div><h2 className="display">Your work changes.<br />Your workspace should too.</h2></div><div className="toggle" role="tablist" aria-label="Workspace mode"><button className={personal ? 'active' : ''} onClick={() => setMode('personal')} role="tab" aria-selected={personal} data-testid="button-personal-space">Personal space</button><button className={!personal ? 'active' : ''} onClick={() => setMode('team')} role="tab" aria-selected={!personal} data-testid="button-team-space">Team space</button></div></div>
-      <div className="workspace-grid">
+       <div className="workspace-grid">
         <div className="workspace-copy"><div className="eyebrow">{personal ? 'Personal space' : 'Team space'}</div><h3>{personal ? 'Protect your focus.' : 'See the whole team move.'}</h3><p>{personal ? 'Keep your personal work organized without getting buried in team activity.' : 'Turn individual tasks into coordinated execution with shared visibility and real-time progress.'}</p><ul className="workspace-points">{(personal ? ['Private Capture Inbox', 'Personal Dashboard', 'Task Flow Board', 'Upcoming deadlines'] : ['Sprint Board', 'Story points and progress', 'Swimlanes by assignee', 'Team workload and blockers']).map((point) => <li key={point}><Check size={15} />{point}</li>)}</ul></div>
-        <div className="mode-visual">{personal ? <CaptureDemo compact /> : <BoardDemo />}</div>
+         <div className={`mode-visual mode-state-${mode}`} key={mode} aria-live="polite">{personal ? <CaptureDemo compact /> : <BoardDemo />}</div>
       </div>
     </div>
   </section>;
@@ -263,12 +415,27 @@ function WorkspaceSwitcher() {
 
 function WorkflowSection() {
   const [active, setActive] = useState<Stage>('capture');
-  return <section className="workflow-section">
+  const workflowVisual = active === 'capture' ? <CaptureDemo compact /> : active === 'triage' ? <div className="workflow-triage-preview"><div className="eyebrow">Triage task</div><h3>Fix mobile navbar</h3><div className="triage-fields"><div><span>Workspace</span><strong>Personal</strong></div><div><span>Board column</span><strong>Todo</strong></div><div><span>Priority</span><strong className="accent-text">High</strong></div></div></div> : active === 'focus' ? <PersonalFlowPreview /> : active === 'execute' ? <BoardDemo full /> : <AutomationDemo />;
+   return <section className="workflow-section" data-reveal>
     <div className="container-wide workflow-layout">
       <nav className="workflow-index" aria-label="Workflow stages">{stageLabels.map((stage) => <button className={active === stage.id ? 'active' : ''} onClick={() => setActive(stage.id)} key={stage.id} data-testid={`button-workflow-${stage.id}`}>{stage.id.toUpperCase()}</button>)}</nav>
-      <div className="workflow-copy"><div className="eyebrow">The SprintDesk workflow</div><h2 className="display">A thought is the beginning, not another place to lose work.</h2><p>Every stage keeps context intact—from the moment something occurs to the moment a team can act on it.</p><div className="workflow-stages">{stageLabels.map((stage, index) => <article className="workflow-stage" id={stage.id} key={stage.id} style={{ opacity: active === stage.id ? 1 : .48, transition: 'opacity .3s ease' }}><span className="stage-no">0{index + 1}</span><div><h3>{stage.label === 'Monitor' ? 'Monitor the work.' : stage.label === 'Automate' ? 'Let the workflow handle the busywork.' : stage.label === 'Capture' ? 'Catch everything.' : stage.label === 'Triage' ? 'Organize when you’re ready.' : stage.label === 'Focus' ? 'Work in the right context.' : 'Keep work moving.'}</h3><p>{stage.label === 'Capture' && 'Quickly capture thoughts, tasks, links, and ideas in a private inbox.'}{stage.label === 'Triage' && 'Refine the title, choose Personal or Team, pick a board column, and set priority.'}{stage.label === 'Focus' && 'Move the item into your Task Flow Board or a shared Sprint Board.'}{stage.label === 'Execute' && 'Use story points, progress, swimlanes, tags, and collaboration to make momentum visible.'}{stage.label === 'Monitor' && 'See sprint progress, velocity, blockers, workload, and activity in the Command Center.'}{stage.label === 'Automate' && 'Create no-code rules: when a status changes, set priority and assign the right person.'}</p>{active === stage.id && <div className="violet-rule" style={{ maxWidth: 300 }} />}</div></article>)}</div></div>
+      <div className="workflow-copy"><div className="eyebrow">The SprintDesk workflow</div><h2 className="display">One workflow from thought to execution.</h2><p>Every stage keeps context intact—from the moment something occurs to the moment a team can act on it.</p><div className="workflow-stages">{stageLabels.map((stage, index) => <article className="workflow-stage" id={stage.id} key={stage.id} style={{ opacity: active === stage.id ? 1 : .48, transition: 'opacity .3s ease' }}><span className="stage-no">0{index + 1}</span><div><h3>{stage.label === 'Automate' ? 'Let the workflow handle the repetitive work.' : stage.label === 'Capture' ? 'Catch everything.' : stage.label === 'Triage' ? 'Organize when you’re ready.' : stage.label === 'Focus' ? 'Work in the right context.' : 'Keep work moving.'}</h3><p>{stage.label === 'Capture' && 'Quickly capture tasks, ideas, notes, and links without interrupting your flow.'}{stage.label === 'Triage' && 'Turn raw thoughts into structured work by choosing where the task belongs and what happens next.'}{stage.label === 'Focus' && 'Keep personal priorities separate from collaborative execution.'}{stage.label === 'Execute' && 'Turn individual tasks into coordinated progress with shared sprint visibility.'}{stage.label === 'Automate' && 'Create simple rules that automatically update tasks and keep work moving.'}</p>{active === stage.id && <div className="violet-rule" style={{ maxWidth: 300 }} />}</div></article>)}</div><div className="workflow-visual" aria-label={`${heroPhases.find((item) => item.id === (active === 'focus' ? 'personal' : active === 'execute' ? 'team' : active))?.label ?? active} product preview`}>{workflowVisual}</div></div>
     </div>
   </section>;
+}
+
+function PersonalFlowPreview() {
+  const columns: [string, string[]][] = [
+    ['Backlog', ['Client proposal']],
+    ['Todo', ['Fix mobile navbar', 'Review feedback']],
+    ['In Progress', ['Onboarding notes']],
+    ['Review', ['Release checklist']],
+  ];
+  return <div className="hero-board-state workflow-personal-preview" data-testid="demo-personal-task-flow">
+    <div className="board-state-heading"><div><span className="eyebrow">Personal workspace</span><h3>Personal Task Flow</h3></div><span className="demo-count">4 due today</span></div>
+    <div className="hero-columns">{columns.map(([name, tasks]) => <div className="hero-column" key={name}><div className="hero-column-title"><span>{name}</span><b>{tasks.length}</b></div>{tasks.map((task) => <div className={`hero-card ${task === 'Fix mobile navbar' ? 'selected-card' : ''}`} key={task}><strong>{task}</strong><small>{task === 'Fix mobile navbar' ? 'Todo · High' : 'Personal task'}</small></div>)}</div>)}</div>
+    <div className="board-state-foot"><span className="route-chip">PERSONAL TASK FLOW</span><span>One thought, now in context.</span></div>
+  </div>;
 }
 
 function PricingCards({ compact = false }: { compact?: boolean }) {
@@ -282,15 +449,27 @@ function PricingCards({ compact = false }: { compact?: boolean }) {
 }
 
 function Home() {
-  const [stage, setStage] = useState(0);
-  return <Shell><Meta title="SprintDesk — Where Personal Focus Meets Team Velocity" description="SprintDesk connects private capture, personal task flow, and coordinated team sprints in one workspace." path="/" />
+  return <Shell><Meta title="SprintDesk | Personal Task Management & Team Execution" description="Capture tasks, organize personal work, manage team sprints, track progress, and automate workflows with SprintDesk." path="/" />
     <main>
-      <section className="hero" id="start"><div className="container-wide hero-grid"><div className="hero-copy"><div className="eyebrow">Personal focus <span style={{ color: 'hsl(var(--muted-foreground))' }}>×</span> team execution</div><h1 className="display">Where personal focus meets <em>team velocity.</em></h1><p>Stop switching between scattered notebooks and complex project boards. SprintDesk lets you capture ideas instantly, manage personal tasks, and run team sprints in one unified workspace.</p><div className="hero-actions"><a href="#demo" className="button-primary" data-testid="link-hero-start">Start free <ArrowUpRight size={15} /></a><a href="#how-it-works" className="button-secondary" data-testid="link-hero-how">See how it works <Play size={14} /></a></div><div className="microcopy">No credit card required.</div></div><div className="hero-product" id="demo"><CaptureDemo /></div></div><div className="hero-stage">{stageLabels.map((item, index) => <button className={`stage-pill ${index <= stage ? 'active' : ''}`} key={item.id} onClick={() => setStage(index)} data-testid={`button-hero-stage-${item.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}{index < stageLabels.length - 1 && <i className="stage-line" />}</button>)}</div></section>
-      <section className="problem-section"><div className="container-wide problem-layout"><div className="problem-intro"><div className="eyebrow">The gap between thought and outcome</div><h2 className="display">Your work doesn’t fit into one box.</h2><p>Personal focus and team execution are different contexts. SprintDesk gives each the space it needs, then connects them when work is ready to move.</p></div><div className="problem-list">{[['01', 'The notebook mess', '“I write ideas down, but they never become real tasks.”', 'Capture Inbox'], ['02', 'Context overload', '“My personal work gets buried inside team boards.”', 'Separate personal and team workspaces'], ['03', 'Status chasing', '“I spend too much time asking for updates.”', 'Team Command Center + automation']].map(([no, title, quote, solution]) => <div className="problem-row" key={no}><div className="problem-number">{no}</div><div><h3>{title}</h3><p>{quote}</p></div><div className="problem-solution">{solution}</div></div>)}</div></div></section>
+      <section className="hero" id="start">
+        <div className="container-wide hero-inner">
+          <div className="hero-copy">
+            <div className="hero-signal" aria-label="Personal focus times team execution"><span className="signal-node" /><span className="signal-line" /><span className="signal-label">PERSONAL FOCUS × TEAM EXECUTION</span><span className="signal-line" /><span className="signal-node" /></div>
+            <h1 className="display">Where Personal Focus Meets <em>Team Velocity.</em></h1>
+            <p>SprintDesk brings personal productivity and team execution into one connected workspace. Capture ideas instantly, organize work without friction, and move seamlessly from personal focus to collaborative sprints.</p>
+            <div className="hero-actions"><a href="#demo" className="button-primary" data-testid="link-hero-start">Start Free <ArrowUpRight size={15} /></a><a href="#how-it-works" className="button-secondary" data-testid="link-hero-how">See How It Works <Play size={14} /></a></div>
+            <div className="microcopy">No credit card required.</div>
+          </div>
+          <div className="hero-product" id="demo"><HeroWorkflow /></div>
+        </div>
+      </section>
+      <section className="hero-bridge" aria-label="The beginning of work"><div className="container-wide"><span className="bridge-rule" /><p>Most work doesn’t start as a perfectly organized task.</p><div className="bridge-words"><span>A thought.</span><span>A message.</span><span>A note.</span><span>A reminder.</span></div></div></section>
+      <section className="problem-section"><div className="container-wide problem-layout"><div className="problem-intro"><div className="eyebrow">The gap between thought and outcome</div><h2 className="display">Your work doesn’t fit into one box.</h2><p>Personal focus and team execution are different contexts. SprintDesk gives each the space it needs, then connects them when work is ready to move.</p><div className="problem-outcome"><span className="outcome-line" /><strong>One connected workflow.</strong></div></div><div className="problem-list">{[['01', 'The notebook mess', '“I write ideas down, but they never become real tasks.”', 'Capture Inbox', 'note-fragments'], ['02', 'Context overload', '“My personal work gets buried inside team boards.”', 'Personal / Team', 'split-context'], ['03', 'Status chasing', '“I spend too much time asking for updates.”', 'Command Center', 'status-thread']].map(([no, title, quote, solution, visual]) => <div className="problem-row" key={no}><div className="problem-number">{no}</div><div><h3>{title}</h3><p>{quote}</p></div><div className={`problem-visual ${visual}`}><span className="visual-lines" /><strong>{solution}</strong><small>{visual === 'note-fragments' ? 'captured into SprintDesk' : visual === 'split-context' ? 'two clear places to work' : 'visibility from the workflow'}</small></div></div>)}</div></div></section>
       <div id="how-it-works"><WorkflowSection /></div>
       <WorkspaceSwitcher />
       <section className="feature-strip"><div className="container-wide"><SectionHeading eyebrow="Selected capabilities" title="The quiet command layer for work in motion." body="SprintDesk keeps the surface simple while giving every task a meaningful next place to go." /><div className="feature-rail"><div className="feature-nav">{[['Inbox', 'Catch thoughts before they disappear.', '#capture'], ['Calendar', 'See deadlines before they surprise you.', '#calendar'], ['Command Center', 'See your team’s heartbeat.', '#command-center']].map(([label, detail, href], index) => <a className={index === 0 ? 'active' : ''} href={`/features${href}`} key={label} data-testid={`link-feature-${label.toLowerCase().replaceAll(' ', '-')}`}><span>{label}</span><span>0{index + 1} ↗</span></a>)}</div><div className="feature-detail"><div className="eyebrow">Capture without interrupting your flow</div><h3>Don’t organize the thought. Just catch it.</h3><p>Thoughts, tasks, links, and ideas can wait in a private Capture Inbox until you have the context to triage them properly.</p><CaptureDemo compact /></div></div></div></section>
-      <section className="command-section"><div className="container-wide"><div className="command-heading"><div><div className="eyebrow">Team Command Center</div><h2 className="display">See your team’s heartbeat in one screen.</h2></div><p>Sprint progress, velocity, blockers, workload, and activity—visible without another status meeting.</p></div><CommandCenter /></div></section>
+       <section className="command-section"><div className="container-wide"><div className="command-heading"><div><div className="eyebrow">Team visibility</div><h2 className="display">See your team’s heartbeat in one screen.</h2></div><p>Understand progress, workload, blockers, and team activity without chasing updates across meetings and messages.</p></div><CommandCenter /></div></section>
+       <section className="sprint-board-section"><div className="container-wide sprint-board-heading"><div className="eyebrow">Team execution</div><h2 className="display">Turn tasks into team momentum.</h2><p>Give work structure without losing visibility.</p><BoardDemo full /></div></section>
       <section className="calendar-section"><div className="container-wide calendar-layout"><div className="calendar-copy"><div className="eyebrow">Interactive calendar</div><h2 className="display">See deadlines before they become surprises.</h2><p>Bring due dates, scheduled tasks, and upcoming work into a monthly view that makes the next important thing easy to find.</p><Link href="/features#calendar" className="button-secondary" style={{ marginTop: 24 }} data-testid="link-calendar-feature">Explore the calendar <ArrowRight size={15} /></Link></div><CalendarDemo /></div></section>
       <section className="automation-section"><div className="container-wide automation-layout"><div className="automation-copy"><div className="eyebrow">No-code automations</div><h2 className="display">Your board shouldn’t need constant babysitting.</h2><p>If this. Then that. Without the busywork. Create a rule once and let routine status, priority, and assignment changes follow the work.</p></div><AutomationDemo /></div></section>
       <AudienceSection />
@@ -310,11 +489,11 @@ const audienceData = {
 function AudienceSection() {
   const [selected, setSelected] = useState<keyof typeof audienceData>('Managers');
   const data = audienceData[selected];
-  return <section className="audience-section"><div className="container-wide"><SectionHeading eyebrow="Made for the way work actually happens" title="One workspace. Different reasons to open it." body="SprintDesk meets you in the context you are already in, then helps work travel to the people who need it." /><div className="audience-tabs" role="tablist">{(Object.keys(audienceData) as (keyof typeof audienceData)[]).map((label) => <button className={selected === label ? 'active' : ''} onClick={() => setSelected(label)} role="tab" aria-selected={selected === label} key={label} data-testid={`button-audience-${label.toLowerCase().replaceAll(' ', '-')}`}>{label}</button>)}</div><div className="audience-content"><div><div className="eyebrow">{data.eyebrow}</div><h2 className="display">{data.title}</h2><p>{data.body}</p><div className="audience-list">{data.items.map((item) => <span key={item}>{item}</span>)}</div><Link href={data.href} className="button-secondary" style={{ marginTop: 28 }} data-testid="link-audience-solution">Explore this workflow <ArrowRight size={15} /></Link></div><div className="audience-note"><div className="eyebrow">The useful distinction</div><p style={{ color: 'hsl(var(--foreground))', fontSize: 21, lineHeight: 1.35, margin: '18px 0 0' }}>{selected === 'Managers' ? 'Visibility should arrive from the workflow—not from another request for an update.' : selected === 'Remote teams' ? 'Async does not mean invisible. Shared context makes the handoff legible.' : selected === 'Individual contributors' ? 'Private capture is not separate from collaboration. It is where better work starts.' : 'Structure can grow without forcing every piece of work into the same shape.'}</p></div></div></div></section>;
+  return <section className="audience-section" data-reveal><div className="container-wide"><SectionHeading eyebrow="Made for the way work actually happens" title="One workspace. Different reasons to open it." body="SprintDesk meets you in the context you are already in, then helps work travel to the people who need it." /><div className="audience-tabs" role="tablist">{(Object.keys(audienceData) as (keyof typeof audienceData)[]).map((label) => <button className={selected === label ? 'active' : ''} onClick={() => setSelected(label)} role="tab" aria-selected={selected === label} key={label} data-testid={`button-audience-${label.toLowerCase().replaceAll(' ', '-')}`}>{label}</button>)}</div><div className="audience-content" key={selected}><div><div className="eyebrow">{data.eyebrow}</div><h2 className="display">{data.title}</h2><p>{data.body}</p><div className="audience-list">{data.items.map((item) => <span key={item}>{item}</span>)}</div><Link href={data.href} className="button-secondary" style={{ marginTop: 28 }} data-testid="link-audience-solution">Explore this workflow <ArrowRight size={15} /></Link></div><div className="audience-note"><div className="eyebrow">The useful distinction</div><p style={{ color: 'hsl(var(--foreground))', fontSize: 21, lineHeight: 1.35, margin: '18px 0 0' }}>{selected === 'Managers' ? 'Visibility should arrive from the workflow—not from another request for an update.' : selected === 'Remote teams' ? 'Async does not mean invisible. Shared context makes the handoff legible.' : selected === 'Individual contributors' ? 'Private capture is not separate from collaboration. It is where better work starts.' : 'Structure can grow without forcing every piece of work into the same shape.'}</p></div></div></div></section>;
 }
 
 function FinalCTA() {
-  return <section className="final-cta" id="final-cta"><div className="container-wide"><div className="eyebrow">A clearer place for work to go</div><h2 className="display">From scattered thoughts to coordinated execution.</h2><p>Capture the work. Organize the priorities. Keep your team moving.</p><a href="#start" className="button-primary" data-testid="link-final-start">Start SprintDesk for free <ArrowUpRight size={15} /></a><div className="microcopy">No credit card required.</div></div></section>;
+  return <section className="final-cta" id="final-cta" data-reveal><div className="container-wide"><div className="eyebrow">A clearer place for work to go</div><h2 className="display">From scattered thoughts to coordinated execution.</h2><p>Capture the work. Organize the priorities. Keep your team moving.</p><a href="#start" className="button-primary" data-testid="link-final-start">Start SprintDesk for free <ArrowUpRight size={15} /></a><div className="microcopy">No credit card required.</div></div></section>;
 }
 
 function Features() {
