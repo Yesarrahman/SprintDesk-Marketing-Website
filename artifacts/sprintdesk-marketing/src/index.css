@@ -55,6 +55,29 @@
   --app-font-sans: 'Manrope', sans-serif;
   --app-font-mono: 'DM Mono', monospace;
   --shadow-soft: 0 24px 80px hsl(228 60% 3% / 0.35);
+
+  /* SprintDesk foundation tokens */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --radius-control: 0.625rem;
+  --radius-panel: 0.9375rem;
+  --border-subtle: hsl(225 17% 23% / 0.78);
+  --motion-fast: 140ms;
+  --motion-standard: 240ms;
+  --motion-layout: 420ms;
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --z-content: 1;
+  --z-noise: 20;
+  --z-nav: 30;
+  --z-overlay: 40;
 }
 
 * { box-sizing: border-box; }
@@ -81,7 +104,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   content: '';
   pointer-events: none;
   position: fixed;
-  z-index: 20;
+  z-index: var(--z-noise);
   inset: 0;
   opacity: .032;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
@@ -106,7 +129,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 .violet-rule { height: 1px; background: linear-gradient(90deg, hsl(var(--primary)), transparent); }
 
-.nav-wrap { position: fixed; z-index: 30; inset: 0 0 auto; padding: 18px 0; transition: .3s ease; }
+.nav-wrap { position: fixed; z-index: var(--z-nav); inset: 0 0 auto; padding: 18px 0; transition: padding var(--motion-layout) var(--ease-out-quart); }
 .nav-wrap.scrolled { padding: 10px 0; }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
@@ -114,7 +137,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   transition: .3s ease;
 }
 .nav-wrap.scrolled .nav-inner { background: hsl(228 22% 10% / .82); border-color: hsl(var(--border)); backdrop-filter: blur(18px); box-shadow: 0 12px 36px hsl(228 60% 3% / .22); }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.04em; }
+.brand { display: inline-flex; align-items: center; min-width: 0; }
+.brand-logo { display: block; width: 150px; max-width: 100%; height: auto; object-fit: contain; }
 .brand-mark { width: 25px; height: 25px; display: grid; place-items: center; position: relative; border: 1px solid hsl(var(--primary)); border-radius: 8px; color: hsl(var(--primary)); }
 .brand-mark::before { content: ''; width: 10px; height: 10px; border: 2px solid currentColor; border-left-color: transparent; border-radius: 50%; transform: rotate(-35deg); }
 .nav-links { display: flex; align-items: center; gap: 5px; margin-left: auto; }
@@ -138,6 +162,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .dropdown-panel a:hover { background: hsl(var(--secondary)); }
 .dropdown-panel small { display: block; color: hsl(var(--muted-foreground)); font-size: 11px; margin-top: 2px; }
 .mobile-nav { display: none; }
+.mobile-nav-label { display: block; padding: 12px 12px 5px; color: hsl(var(--accent)); font: 500 10px/1.2 var(--app-font-mono); letter-spacing: .15em; text-transform: uppercase; }
 
 .hero { position: relative; min-height: 860px; padding: 210px 0 110px; overflow: hidden; }
 .hero::after { content: ''; position: absolute; width: 640px; height: 640px; right: -220px; top: 90px; border-radius: 50%; background: radial-gradient(circle, hsl(267 92% 75% / .10), transparent 63%); pointer-events: none; }
@@ -396,9 +421,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .resource-card.featured { grid-column: span 2; }
   .footer-main { grid-template-columns: repeat(3, 1fr); }
   .footer-brand { grid-column: span 3; }
+  .brand-logo { width: 142px; }
 }
 @media (max-width: 600px) {
   .container-wide { width: calc(100% - 30px); }
+  .brand-logo { width: 136px; }
   .section, .section-tight, .problem-section, .workflow-section, .workspace-section, .feature-strip, .command-section, .calendar-section, .automation-section, .audience-section, .pricing-preview, .inner-section { padding-block: 76px; }
   .hero { padding-top: 130px; }
   .hero-copy h1 { font-size: 44px; }

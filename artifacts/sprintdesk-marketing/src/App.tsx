@@ -49,7 +49,10 @@ function Meta({ title, description, path = '' }: { title: string; description: s
     setMeta('og:title', title, true);
     setMeta('og:description', description, true);
     setMeta('og:type', 'website', true);
+    setMeta('og:url', `https://sprintdesk.app${path || window.location.pathname}`, true);
+    setMeta('og:image', 'https://sprintdesk.app/sprintdesk-logo.png', true);
     setMeta('twitter:card', 'summary_large_image');
+    setMeta('twitter:image', 'https://sprintdesk.app/sprintdesk-logo.png');
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -77,18 +80,15 @@ function Meta({ title, description, path = '' }: { title: string; description: s
 }
 
 function Logo() {
-  return <Link href="/" className="brand" data-testid="link-logo"><span className="brand-mark" aria-hidden="true" /> <span>SprintDesk</span></Link>;
+  return <Link href="/" className="brand" data-testid="link-logo" aria-label="SprintDesk home"><img className="brand-logo" src="/sprintdesk-logo.png" alt="SprintDesk" /></Link>;
 }
 
 const productLinks = [
-  ['Overview', '/features'],
   ['Capture Inbox', '/features#capture'],
-  ['Task Management', '/features#tasks'],
-  ['Sprint Boards', '/features#sprints'],
-  ['Calendar', '/features#calendar'],
+  ['Personal Task Flow', '/features#tasks'],
+  ['Team Sprint Board', '/features#sprints'],
   ['Command Center', '/features#command-center'],
   ['Automations', '/features#automations'],
-  ['How It Works', '/how-it-works'],
 ];
 const solutionLinks = [
   ['Managers', '/solutions/managers'],
@@ -140,7 +140,14 @@ function Navbar() {
       </div>
       {mobile && <nav className="mobile-nav" aria-label="Mobile navigation">
         <p className="eyebrow" style={{ padding: '6px 12px' }}>Explore SprintDesk</p>
-        {[...productLinks.slice(0, 1), ...solutionLinks, ...resourceLinks, ['Pricing', '/pricing']].map(([label, href]) => <Link key={href} href={href} onClick={() => setMobile(false)} data-testid={`link-mobile-${label.toLowerCase().replaceAll(' ', '-')}`}>{label}</Link>)}
+        <span className="mobile-nav-label">Product</span>
+        {productLinks.map(([label, href]) => <Link key={href} href={href} onClick={() => setMobile(false)} data-testid={`link-mobile-${label.toLowerCase().replaceAll(' ', '-')}`}>{label}</Link>)}
+        <Link href="/how-it-works" onClick={() => setMobile(false)} data-testid="link-mobile-how-it-works">How it works</Link>
+        <span className="mobile-nav-label">Solutions</span>
+        {solutionLinks.map(([label, href]) => <Link key={href} href={href} onClick={() => setMobile(false)} data-testid={`link-mobile-${label.toLowerCase().replaceAll(' ', '-')}`}>{label}</Link>)}
+        <span className="mobile-nav-label">Resources</span>
+        {resourceLinks.map(([label, href]) => <Link key={href} href={href} onClick={() => setMobile(false)} data-testid={`link-mobile-${label.toLowerCase().replaceAll(' ', '-')}`}>{label}</Link>)}
+        <Link href="/pricing" onClick={() => setMobile(false)} data-testid="link-mobile-pricing">Pricing</Link>
         <a href="#start" className="button-primary mobile-cta" onClick={() => setMobile(false)} data-testid="link-mobile-start">Start free <ArrowUpRight size={15} /></a>
       </nav>}
     </header>

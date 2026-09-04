@@ -28,6 +28,7 @@ Premium product-led marketing website for SprintDesk, showing the path from pers
 - `artifacts/sprintdesk-marketing/public/sitemap.xml` — public marketing URL map
 - `.agents/skills/sprintdesk-frontend-experience/SKILL.md` — frontend/design authority
 - `.agents/skills/sprintdesk-seo-content-system/SKILL.md` — SEO/content authority
+- Always apply both SprintDesk skills when extending the marketing site.
 
 ## Architecture decisions
 
