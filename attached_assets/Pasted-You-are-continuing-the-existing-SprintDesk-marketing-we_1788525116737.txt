@@ -1,0 +1,2026 @@
+You are continuing the existing SprintDesk marketing website.
+
+IMPORTANT:
+Before making changes, inspect the existing codebase and understand:
+
+- Existing design tokens
+- Typography
+- Color system
+- Reusable components
+- Navbar
+- Footer
+- Animation utilities
+- Routing structure
+- SEO architecture
+
+Reuse the existing system.
+
+DO NOT create a second design system.
+DO NOT duplicate components.
+DO NOT introduce a different visual style.
+
+Your task is to build and refine the COMPLETE HOMEPAGE for SprintDesk.
+
+The page route is:
+
+/
+
+==================================================
+01. PRODUCT UNDERSTANDING
+==================================================
+
+SprintDesk is a connected workspace for:
+
+- Personal task management
+- Team task management
+- Sprint execution
+- Team visibility
+- Workflow automation
+
+The most important product differentiation is:
+
+Most task and project management tools focus primarily on team collaboration.
+
+Most personal productivity tools focus primarily on individual work.
+
+SprintDesk connects both contexts.
+
+A user can:
+
+1. Capture a thought or task instantly.
+2. Leave it unorganized initially.
+3. Triage it later.
+4. Decide whether it belongs to:
+   - Personal work
+   - Team work
+5. Move it into the correct workspace.
+6. Track progress.
+7. Give managers visibility.
+8. Automate repetitive actions.
+
+The central product philosophy is:
+
+Capture personally.
+Organize intelligently.
+Execute together.
+
+The core transformation is:
+
+SCATTERED THOUGHT
+        ↓
+CAPTURE
+        ↓
+TRIAGE
+        ↓
+PERSONAL TASK FLOW
+        OR
+TEAM SPRINT BOARD
+        ↓
+TRACK PROGRESS
+        ↓
+AUTOMATE
+
+The homepage must communicate this transformation visually and emotionally.
+
+Do not reduce SprintDesk to:
+
+"Kanban + Calendar + Automation"
+
+Those are features.
+
+The STORY is:
+
+A thought becomes organized work.
+Organized work becomes focused execution.
+Focused execution becomes visible team progress.
+
+==================================================
+02. TARGET AUDIENCE
+==================================================
+
+Primary audience:
+
+Managers
+Remote teams
+Team leads
+Growing teams
+
+Secondary audience:
+
+Individual contributors
+Professionals managing both personal and collaborative work
+
+The homepage must work for both:
+
+"I need to organize my own work."
+
+and:
+
+"I need visibility into what my team is doing."
+
+The design should clearly communicate both use cases without confusing them.
+
+==================================================
+03. OVERALL ART DIRECTION
+==================================================
+
+The website should feel like:
+
+A premium modern SaaS company.
+
+The visual personality should be:
+
+Intelligent
+Structured
+Focused
+Fast
+Modern
+Premium
+Technical
+Human
+
+Imagine a design quality comparable to a well-funded modern SaaS startup.
+
+DO NOT COPY any existing company.
+
+The website should NOT look like:
+
+- A generic AI-generated SaaS landing page
+- A template from ThemeForest
+- A crypto website
+- A gaming website
+- A dashboard gallery
+- A page made entirely from rounded cards
+
+Avoid:
+
+- Random gradient blobs
+- Giant meaningless glowing backgrounds
+- Excessive glassmorphism
+- Every section inside a card
+- Repeated 3-column feature grids
+- Random floating icons
+- Stock photos
+- Cartoon illustrations
+- Excessive emojis
+- Excessive use of pills
+- Excessive border radius
+
+Use:
+
+- Editorial layouts
+- Large product interfaces
+- Intentional whitespace
+- Full-width visual moments
+- Controlled use of borders
+- Layered UI
+- Realistic task data
+- Data visualization
+- Interactive demonstrations
+
+The website should feel designed, not generated.
+
+==================================================
+04. COLOR DIRECTION
+==================================================
+
+Use the existing design tokens.
+
+If refinement is needed, keep the direction:
+
+Primary background:
+
+Deep near-black.
+
+Secondary backgrounds:
+
+Slightly elevated charcoal surfaces.
+
+Primary accent:
+
+Premium indigo / violet.
+
+Secondary accent:
+
+Restrained blue or cyan for:
+
+- Data
+- Progress
+- Interactive states
+
+Text:
+
+High-contrast off-white.
+
+Secondary text:
+
+Muted neutral gray.
+
+Use accent colors strategically.
+
+Do NOT turn the page into a purple gradient.
+
+Most of the page should feel:
+
+Dark
+Quiet
+Precise
+
+The accent color should feel valuable because it is used selectively.
+
+==================================================
+05. TYPOGRAPHY
+==================================================
+
+Use the existing typography system.
+
+The homepage should have strong hierarchy.
+
+General direction:
+
+Eyebrow:
+Small
+Uppercase
+Wide letter spacing
+
+Hero headline:
+Large
+Confident
+Tight line-height
+
+Section headlines:
+Editorial
+Strong
+Readable
+
+Body copy:
+Comfortable reading width
+Never stretch body text too wide
+
+Avoid:
+
+Huge 4-line hero text.
+
+Avoid:
+
+Tiny body copy.
+
+Desktop maximum content width should generally feel around:
+
+1200–1400px
+
+Text blocks should often remain around:
+
+550–700px
+
+Do not force every section into the same max-width container.
+
+==================================================
+06. SPACING SYSTEM
+==================================================
+
+Use intentional vertical rhythm.
+
+Desktop:
+
+Hero:
+Large visual breathing room.
+
+Major sections:
+Approximately 120px–180px vertical spacing.
+
+Medium sections:
+80px–120px.
+
+Mobile:
+
+Reduce spacing intelligently.
+
+Do not simply scale everything down proportionally.
+
+The page should breathe.
+
+But avoid giant empty black areas.
+
+==================================================
+07. HOMEPAGE STRUCTURE
+==================================================
+
+Build the homepage in this exact narrative order:
+
+1. Navigation
+2. Hero
+3. Problem / context
+4. Product workflow
+5. Personal vs Team workspace
+6. Capture Inbox
+7. Team Command Center
+8. Sprint Board
+9. Calendar
+10. Automation
+11. Audience section
+12. Pricing preview
+13. Final CTA
+14. Footer
+
+The transition between sections must feel intentional.
+
+Do not make the homepage feel like 13 unrelated feature sections.
+
+==================================================
+08. NAVIGATION
+==================================================
+
+Use the existing Navbar component.
+
+Initial state:
+
+Minimal.
+Blends into the background.
+
+Left:
+
+SprintDesk logo.
+
+Center:
+
+Product
+Solutions
+Resources
+Pricing
+
+Right:
+
+Log In
+
+Primary CTA:
+
+Start Free →
+
+Behavior on scroll:
+
+After approximately 40–80px:
+
+- Slight backdrop blur
+- Slightly elevated surface
+- Thin subtle border
+- Soft shadow
+- Smooth transition
+
+Do not make the navbar excessively large.
+
+Desktop height:
+
+Approximately 72–80px.
+
+Mobile:
+
+Logo left.
+
+Menu trigger right.
+
+CTA may remain visible if space allows.
+
+The mobile menu should feel premium and intentional.
+
+Do not use a default ugly dropdown.
+
+==================================================
+09. HERO SECTION
+==================================================
+
+The hero is the most important section on the entire website.
+
+Desktop layout:
+
+Centered editorial content.
+
+Large headline.
+
+Supporting copy.
+
+Two CTAs.
+
+Below the copy:
+
+A large interactive product demonstration.
+
+Suggested structure:
+
+[ Eyebrow ]
+
+PERSONAL FOCUS × TEAM EXECUTION
+
+
+Where Personal Focus
+Meets Team Velocity.
+
+
+SprintDesk brings personal productivity and team execution
+into one connected workspace. Capture ideas instantly,
+organize work without friction, and move seamlessly from
+personal focus to collaborative sprints.
+
+
+[ Start Free → ]     [ See How It Works ]
+
+No credit card required.
+
+
+Below this:
+
+Large interactive product interface.
+
+==================================================
+10. HERO COPY
+==================================================
+
+Use exactly:
+
+Eyebrow:
+
+PERSONAL FOCUS × TEAM EXECUTION
+
+Headline:
+
+Where Personal Focus Meets Team Velocity.
+
+Supporting copy:
+
+SprintDesk brings personal productivity and team execution into one connected workspace. Capture ideas instantly, organize work without friction, and move seamlessly from personal focus to collaborative sprints.
+
+Primary CTA:
+
+Start Free →
+
+Secondary CTA:
+
+See How It Works
+
+Microcopy:
+
+No credit card required.
+
+Do not add extra marketing copy around this.
+
+==================================================
+11. HERO PRODUCT DEMO
+==================================================
+
+This is the signature interaction.
+
+The demo should feel like a real product.
+
+Create a large product canvas.
+
+Desktop size:
+
+Approximately:
+
+1100px–1300px wide.
+
+The UI should feel immersive.
+
+Do not make it a tiny dashboard screenshot.
+
+The demo tells this story.
+
+----------------------------------
+
+STATE 01
+
+A raw thought appears.
+
+Use:
+
+"Fix mobile navbar"
+
+Show a subtle input / quick capture interaction.
+
+The task enters:
+
+CAPTURE INBOX
+
+Show additional realistic items:
+
+Review onboarding flow
+
+Follow up with Sarah
+
+Check sprint blockers
+
+Client feedback idea
+
+The main item:
+
+Fix mobile navbar
+
+should visually become active.
+
+----------------------------------
+
+STATE 02
+
+The user selects:
+
+Triage to Board →
+
+Show a transition.
+
+A triage panel or modal opens.
+
+Fields:
+
+Workspace
+
+Personal
+
+Team Workspace
+
+Board Column
+
+Todo
+
+Priority
+
+High
+
+The interaction should feel believable.
+
+Do not overcomplicate it.
+
+----------------------------------
+
+STATE 03
+
+After triage, animate the task into:
+
+Personal Task Flow.
+
+Show columns:
+
+Backlog
+Todo
+In Progress
+Review
+Completed
+
+The task:
+
+Fix mobile navbar
+
+appears inside:
+
+Todo
+
+----------------------------------
+
+STATE 04
+
+Show the product transitioning.
+
+Personal workspace UI transforms into:
+
+Team Sprint Board.
+
+The same task can now exist in a team execution context.
+
+Show:
+
+Assignee
+
+Story Points
+
+Progress
+
+Epic
+
+Tag
+
+Example:
+
+Assignee:
+Alex Morgan
+
+Story Points:
+3
+
+Epic:
+Website Improvements
+
+Tag:
+Frontend
+
+----------------------------------
+
+STATE 05
+
+The interface settles into the Team Sprint Board.
+
+The viewer should understand:
+
+One captured idea.
+
+Different execution contexts.
+
+One connected workflow.
+
+----------------------------------
+
+INTERACTION BEHAVIOR
+
+On first page load:
+
+Do not immediately start a fast chaotic animation.
+
+Allow the user to absorb the interface.
+
+After approximately 1–2 seconds:
+
+Start the workflow.
+
+Total animation cycle:
+
+Approximately 10–16 seconds.
+
+After finishing:
+
+Pause.
+
+Then optionally restart subtly.
+
+Do not create an annoying infinite loop.
+
+On mobile:
+
+Do not try to show the full complex interface.
+
+Simplify into stacked product states.
+
+Capture.
+
+↓
+
+Triage.
+
+↓
+
+Board.
+
+==================================================
+12. HERO VISUAL DETAILS
+==================================================
+
+The product demo should have:
+
+- Subtle depth
+- Fine borders
+- Realistic shadows
+- Slight layering
+- High information density
+- Good whitespace
+
+Use realistic task content.
+
+Do not use lorem ipsum.
+
+Do not use meaningless numbers.
+
+Add subtle cursor movement only if it improves clarity.
+
+The demo should be understandable even if animation is disabled.
+
+==================================================
+13. TRANSITION TO PROBLEM SECTION
+==================================================
+
+After the hero, create a quiet transition.
+
+Do not immediately jump into another giant headline.
+
+Use a short statement.
+
+For example:
+
+Most work doesn't start as a perfectly organized task.
+
+It starts as:
+
+A thought.
+A message.
+A note.
+A reminder.
+
+Then transition into the problem section.
+
+==================================================
+14. PROBLEM SECTION
+==================================================
+
+Headline:
+
+Your work doesn't fit into one box.
+
+Layout:
+
+Three scenarios.
+
+Do NOT use three identical cards.
+
+Instead create an editorial horizontal layout.
+
+Each problem should have:
+
+Number.
+
+Short label.
+
+Statement.
+
+Visual.
+
+----------------------------------
+
+01
+
+THE NOTEBOOK MESS
+
+"I write ideas down, but they never become real tasks."
+
+Visual:
+
+Scattered note fragments or inbox items.
+
+Transition:
+
+Captured into SprintDesk.
+
+----------------------------------
+
+02
+
+CONTEXT OVERLOAD
+
+"My personal work gets buried inside team boards."
+
+Visual:
+
+Overloaded mixed board.
+
+Transition:
+
+Split into:
+
+Personal.
+
+Team.
+
+----------------------------------
+
+03
+
+STATUS CHASING
+
+"I spend too much time asking for updates."
+
+Visual:
+
+Scattered messages.
+
+Transition:
+
+Command Center visibility.
+
+----------------------------------
+
+At the end:
+
+SprintDesk connects the entire workflow.
+
+Make the visual transformation feel important.
+
+==================================================
+15. PRODUCT WORKFLOW SECTION
+==================================================
+
+This should be one of the strongest sections.
+
+Headline:
+
+One workflow from thought to execution.
+
+Create five steps:
+
+01
+CAPTURE
+
+02
+TRIAGE
+
+03
+FOCUS
+
+04
+EXECUTE
+
+05
+AUTOMATE
+
+Use a sticky-scroll experience on desktop.
+
+Suggested layout:
+
+Left:
+
+Sticky step navigation.
+
+Right:
+
+Large evolving product visualization.
+
+As the user scrolls:
+
+Step 01:
+
+Capture Inbox.
+
+Step 02:
+
+Triage modal.
+
+Step 03:
+
+Personal Task Flow.
+
+Step 04:
+
+Team Sprint Board.
+
+Step 05:
+
+Automation rule.
+
+The active step should change as the user scrolls.
+
+Use smooth transitions.
+
+Avoid scroll-jacking.
+
+Normal scrolling must remain natural.
+
+On mobile:
+
+Convert this into a vertical sequence.
+
+No sticky layout required.
+
+==================================================
+16. STEP CONTENT
+==================================================
+
+STEP 01
+
+CAPTURE
+
+Headline:
+
+Catch everything.
+
+Copy:
+
+Quickly capture tasks, ideas, notes, and links without interrupting your flow.
+
+Visual:
+
+Capture Inbox.
+
+--------------------------------------------------
+
+STEP 02
+
+TRIAGE
+
+Headline:
+
+Organize when you're ready.
+
+Copy:
+
+Turn raw thoughts into structured work by choosing where the task belongs and what happens next.
+
+Visual:
+
+Triage modal.
+
+--------------------------------------------------
+
+STEP 03
+
+FOCUS
+
+Headline:
+
+Work in the right context.
+
+Copy:
+
+Keep personal priorities separate from collaborative execution.
+
+Visual:
+
+Personal Task Flow.
+
+--------------------------------------------------
+
+STEP 04
+
+EXECUTE
+
+Headline:
+
+Keep work moving.
+
+Copy:
+
+Turn individual tasks into coordinated progress with shared sprint visibility.
+
+Visual:
+
+Team Sprint Board.
+
+--------------------------------------------------
+
+STEP 05
+
+AUTOMATE
+
+Headline:
+
+Let the workflow handle the repetitive work.
+
+Copy:
+
+Create simple rules that automatically update tasks and keep work moving.
+
+Visual:
+
+Automation builder.
+
+==================================================
+17. PERSONAL VS TEAM SECTION
+==================================================
+
+This section is critical to SprintDesk differentiation.
+
+Background should shift subtly from the previous section.
+
+Headline:
+
+Your work changes.
+Your workspace should too.
+
+Supporting copy:
+
+Keep personal priorities focused. Bring the team in when collaboration matters.
+
+Create an interactive toggle:
+
+PERSONAL SPACE
+
+TEAM SPACE
+
+The toggle should feel like a product control.
+
+Not a generic website tab.
+
+==================================================
+18. PERSONAL SPACE STATE
+==================================================
+
+Show:
+
+Personal Dashboard.
+
+Elements:
+
+Tasks Due Today
+
+4
+
+Productivity
+
+78%
+
+Upcoming
+
+- Client proposal
+- Fix mobile navbar
+- Review feedback
+
+Mini Capture Inbox.
+
+Below:
+
+Personal Task Flow.
+
+Columns:
+
+Backlog
+
+Todo
+
+In Progress
+
+Review
+
+Completed
+
+Headline:
+
+Protect your focus.
+
+Copy:
+
+Keep your own work organized without getting buried in team activity.
+
+==================================================
+19. TEAM SPACE STATE
+==================================================
+
+When toggled:
+
+Animate the entire interface.
+
+Do not simply hide one image and show another.
+
+The UI should feel like it transforms.
+
+Show:
+
+Team Sprint Board.
+
+Story points.
+
+Assignees.
+
+Swimlanes.
+
+Sprint progress.
+
+Team workload.
+
+Open blockers.
+
+Activity.
+
+Headline:
+
+See the whole team move.
+
+Copy:
+
+Turn individual tasks into coordinated execution with shared visibility and real-time progress.
+
+==================================================
+20. CAPTURE INBOX SECTION
+==================================================
+
+Layout:
+
+Large left text.
+
+Large right product interface.
+
+Eyebrow:
+
+CAPTURE WITHOUT INTERRUPTING YOUR FLOW
+
+Headline:
+
+Don't organize the thought.
+Just catch it.
+
+Supporting copy:
+
+Ideas don't always arrive when you're ready to organize them. Capture them instantly and decide where they belong later.
+
+Show inbox items:
+
+Fix mobile navbar
+
+Follow up with Sarah
+
+Review client feedback
+
+Idea for onboarding
+
+Check sprint blockers
+
+Create a visible interaction:
+
+Triage to Board →
+
+When triggered:
+
+Show one item transforming into a structured task.
+
+Add a small annotation:
+
+RAW THOUGHT
+
+↓
+
+STRUCTURED TASK
+
+Do not over-explain.
+
+The interaction should explain the feature.
+
+==================================================
+21. TEAM COMMAND CENTER
+==================================================
+
+This should be a major visual moment.
+
+Use a slightly different dark surface.
+
+Potentially create subtle atmospheric lighting behind the product UI.
+
+Do not use a giant gradient blob.
+
+Eyebrow:
+
+TEAM VISIBILITY
+
+Headline:
+
+See your team's heartbeat in one screen.
+
+Supporting copy:
+
+Understand progress, workload, blockers, and team activity without chasing updates across meetings and messages.
+
+Create a large realistic Command Center.
+
+Metrics:
+
+SPRINT PROGRESS
+
+78%
+
+TEAM VELOCITY
+
++18%
+
+OPEN BLOCKERS
+
+3
+
+TEAM WORKLOAD
+
+Sarah
+████████
+
+David
+█████
+
+Alex
+██████████
+
+Maria
+██████
+
+Add an activity feed.
+
+Examples:
+
+John moved Landing Page to In Review
+
+Sarah completed API Documentation
+
+David updated Fix mobile navbar
+
+Alex added a blocker
+
+The activity feed can update subtly.
+
+Do not animate constantly.
+
+Use restrained motion.
+
+==================================================
+22. SPRINT BOARD SECTION
+==================================================
+
+Layout:
+
+Centered editorial heading.
+
+Large interactive board.
+
+Headline:
+
+Turn tasks into team momentum.
+
+Supporting copy:
+
+Give work structure without losing visibility.
+
+Show:
+
+Backlog.
+
+Todo.
+
+In Progress.
+
+Review.
+
+Completed.
+
+Task cards should contain:
+
+Title.
+
+Assignee.
+
+Story points.
+
+Progress.
+
+Epic.
+
+Tags.
+
+Example cards:
+
+Fix mobile navbar
+
+3 pts
+
+Alex Morgan
+
+Website Improvements
+
+
+Onboarding improvements
+
+5 pts
+
+Sarah Chen
+
+Product
+
+
+API documentation
+
+2 pts
+
+David Kim
+
+Engineering
+
+Add a control:
+
+Board View
+
+Swimlane View
+
+When switching to Swimlane View:
+
+Group tasks by assignee.
+
+Show:
+
+Sarah Chen
+
+Alex Morgan
+
+David Kim
+
+Maria Lopez
+
+The transition should use layout animation.
+
+Do not instantly replace the entire board.
+
+The viewer should understand:
+
+SprintDesk helps managers see work distribution.
+
+==================================================
+23. CALENDAR SECTION
+==================================================
+
+Use a lighter visual rhythm.
+
+Headline:
+
+See deadlines before they become surprises.
+
+Supporting copy:
+
+See upcoming tasks and important deadlines in a visual monthly view.
+
+Create a realistic calendar.
+
+Show:
+
+September 2026
+
+Example tasks:
+
+Sep 04
+Client proposal
+
+Sep 09
+Mobile navbar
+
+Sep 14
+Sprint review
+
+Sep 21
+Onboarding update
+
+Sep 28
+Release planning
+
+Interactions:
+
+Hover:
+
+Reveal task details.
+
+Click:
+
+Open a lightweight detail preview.
+
+Mobile:
+
+Simplify interaction.
+
+Do not attempt to render a tiny unusable calendar.
+
+==================================================
+24. AUTOMATION SECTION
+==================================================
+
+This should feel technical and powerful.
+
+Use a more focused layout.
+
+Eyebrow:
+
+NO-CODE AUTOMATIONS
+
+Headline:
+
+Your board shouldn't need constant babysitting.
+
+Supporting copy:
+
+Create simple rules that automatically update work when the right conditions are met.
+
+Create a large rule builder.
+
+WHEN
+
+Task Status
+
+changes to
+
+In Review
+
+
+THEN
+
+Set Priority
+
+High
+
+
+AND
+
+Assign
+
+Project Manager
+
+At the bottom:
+
+AUTOMATION ACTIVE ✓
+
+Then demonstrate a task moving into:
+
+In Review
+
+↓
+
+Priority changes to High
+
+↓
+
+Assignee changes.
+
+Make the workflow understandable visually.
+
+Do not use excessive arrows everywhere.
+
+Use clean connectors.
+
+Include supporting statement:
+
+If this.
+Then that.
+Without the busywork.
+
+==================================================
+25. AUDIENCE SECTION
+==================================================
+
+Headline:
+
+Built for the people keeping work moving.
+
+Create a tabbed interface.
+
+Tabs:
+
+Managers
+
+Remote Teams
+
+Individual Contributors
+
+Growing Teams
+
+Each tab should change:
+
+Headline.
+
+Copy.
+
+Product visual.
+
+----------------------------------
+
+MANAGERS
+
+See the work without chasing updates.
+
+Visual:
+
+Command Center.
+
+Focus:
+
+Progress.
+
+Velocity.
+
+Blockers.
+
+Workload.
+
+----------------------------------
+
+REMOTE TEAMS
+
+Stay aligned—even when everyone is everywhere.
+
+Visual:
+
+Shared Sprint Board.
+
+Focus:
+
+Ownership.
+
+Activity.
+
+Deadlines.
+
+Async visibility.
+
+----------------------------------
+
+INDIVIDUAL CONTRIBUTORS
+
+Protect your focus without disconnecting from the team.
+
+Visual:
+
+Personal Task Flow.
+
+Capture Inbox.
+
+----------------------------------
+
+GROWING TEAMS
+
+Scale the workflow without rebuilding it.
+
+Visual:
+
+Story points.
+
+Swimlanes.
+
+Automation.
+
+More team coordination.
+
+Use smooth layout transitions.
+
+Do not use basic Bootstrap-style tabs.
+
+==================================================
+26. PRICING PREVIEW
+==================================================
+
+This should be concise.
+
+Do not turn the homepage into the full pricing page.
+
+Headline:
+
+Start simple. Scale when the work does.
+
+Show:
+
+FREE
+
+$0
+
+For individual professionals.
+
+Key points:
+
+1 Personal Workspace
+
+Up to 3 Team Workspaces
+
+Core Kanban functionality
+
+CTA:
+
+Start Free
+
+
+PRO
+
+$8/month
+
+Badge:
+
+MOST POPULAR
+
+Key points:
+
+Story Points
+
+Time Tracking
+
+Unlimited team members
+
+Advanced Swimlanes
+
+CTA:
+
+Start Pro
+
+
+ENTERPRISE
+
+$20/month
+
+Key points:
+
+No-Code Automations
+
+Timesheet exports
+
+Custom Client Portals
+
+CTA:
+
+Choose Enterprise
+
+Add:
+
+View full pricing →
+
+The Pro plan should be visually emphasized.
+
+Do not make it absurdly larger than the other plans.
+
+==================================================
+27. FINAL CTA
+==================================================
+
+This should feel like a strong conclusion.
+
+Create a visually memorable section.
+
+Not another generic rectangular CTA box.
+
+Potential concept:
+
+A connected workflow line moving through:
+
+Capture
+
+→
+
+Focus
+
+→
+
+Execute
+
+→
+
+Automate
+
+Then:
+
+Headline:
+
+From scattered thoughts to coordinated execution.
+
+Supporting copy:
+
+Capture the work. Organize the priorities. Keep your team moving.
+
+Primary CTA:
+
+Start SprintDesk for Free →
+
+Microcopy:
+
+No credit card required.
+
+This section should create a feeling of completion.
+
+==================================================
+28. FOOTER
+==================================================
+
+Use the existing footer component.
+
+Columns:
+
+PRODUCT
+
+Features
+
+How It Works
+
+Personal Task Management
+
+Team Task Management
+
+Sprint Management
+
+Automations
+
+
+SOLUTIONS
+
+Managers
+
+Remote Teams
+
+Individuals
+
+Growing Teams
+
+
+RESOURCES
+
+Blog
+
+Guides
+
+Templates
+
+Comparisons
+
+
+COMPANY
+
+About
+
+Contact
+
+
+LEGAL
+
+Privacy
+
+Terms
+
+Security
+
+Include the SprintDesk logo and a short description.
+
+==================================================
+29. ANIMATION RULES
+==================================================
+
+Animations should have purpose.
+
+Use:
+
+- Opacity
+- Transform
+- Scale subtly
+- Layout animation
+- Stagger
+- Scroll-triggered transitions
+
+Do not animate:
+
+Every paragraph.
+
+Every card.
+
+Every button.
+
+Avoid:
+
+- Bouncing
+- Constant floating
+- Excessive parallax
+- Infinite decorative movement
+
+Key animation moments only:
+
+1. Hero workflow.
+2. Capture → Triage → Board.
+3. Sticky workflow progression.
+4. Personal → Team transformation.
+5. Sprint Board → Swimlane layout transition.
+6. Automation execution.
+7. Audience tab transitions.
+
+Support:
+
+prefers-reduced-motion.
+
+When reduced motion is enabled:
+
+Show the final understandable states.
+
+==================================================
+30. RESPONSIVE REQUIREMENTS
+==================================================
+
+Design specifically for:
+
+375px
+
+768px
+
+1024px
+
+1440px+
+
+----------------------------------
+
+375px
+
+Prioritize:
+
+Clear hierarchy.
+
+Readable text.
+
+Single-column layouts.
+
+Simplified product demos.
+
+Large tap targets.
+
+Do not horizontally squeeze complex dashboards.
+
+----------------------------------
+
+768px
+
+Allow:
+
+Two-column layouts where appropriate.
+
+Simplified navigation.
+
+Product visuals may use controlled horizontal overflow only where it improves understanding.
+
+----------------------------------
+
+1024px+
+
+Use:
+
+Full editorial layouts.
+
+Sticky sections.
+
+Large product demonstrations.
+
+Interactive workspace layouts.
+
+----------------------------------
+
+1440px+
+
+Use:
+
+More whitespace.
+
+Larger product canvases.
+
+Do not simply stretch text across the entire screen.
+
+==================================================
+31. ACCESSIBILITY
+==================================================
+
+Ensure:
+
+Semantic HTML.
+
+Correct heading hierarchy.
+
+Keyboard navigation.
+
+Visible focus states.
+
+ARIA labels where necessary.
+
+Accessible tab controls.
+
+Accessible interactive product demos.
+
+Color is never the only indicator of state.
+
+Respect reduced motion.
+
+Maintain strong contrast.
+
+==================================================
+32. PERFORMANCE
+==================================================
+
+Prioritize performance.
+
+Do not use:
+
+Heavy video backgrounds.
+
+Unnecessary WebGL.
+
+Huge image files.
+
+Animation libraries for trivial effects.
+
+Avoid making the entire homepage client-rendered.
+
+Use:
+
+Lazy-loaded interactive components where appropriate.
+
+Optimized images.
+
+Efficient SVGs.
+
+Code splitting.
+
+Server rendering where appropriate.
+
+Interactive demos should not delay the first meaningful render.
+
+==================================================
+33. SEO FOR HOMEPAGE
+==================================================
+
+Implement page-specific SEO metadata.
+
+Suggested title:
+
+SprintDesk | Personal Task Management & Team Execution
+
+Suggested meta description:
+
+Capture tasks, organize personal work, manage team sprints, track progress, and automate workflows with SprintDesk.
+
+Use:
+
+Semantic H1.
+
+Logical H2 hierarchy.
+
+Descriptive link text.
+
+Appropriate structured data already supported by the project architecture.
+
+Do not keyword stuff.
+
+==================================================
+34. CONTENT RULES
+==================================================
+
+Use only accurate SprintDesk capabilities.
+
+Do not invent:
+
+AI assistants.
+
+AI scheduling.
+
+Advanced capacity forecasting.
+
+Integrations.
+
+Gantt charts.
+
+Chat.
+
+File storage.
+
+Advanced reporting.
+
+Any feature that has not been defined in the product specification.
+
+Do not use:
+
+Fake testimonials.
+
+Fake customer logos.
+
+Fake user counts.
+
+Fake trust badges.
+
+Fake statistics.
+
+==================================================
+35. FINAL QUALITY STANDARD
+==================================================
+
+Before completing the homepage:
+
+Review the entire page as a senior SaaS designer and frontend engineer.
+
+Ask:
+
+Does this look like one cohesive product?
+
+Does the hero immediately explain the product?
+
+Does the page communicate the difference between personal work and team execution?
+
+Does every major section contribute to the central story?
+
+Are the product demonstrations understandable?
+
+Are there too many cards?
+
+Are there too many rounded containers?
+
+Are animations purposeful?
+
+Does mobile feel intentionally designed?
+
+Is the CTA hierarchy clear?
+
+Is the page fast?
+
+Is the design memorable?
+
+If any section feels generic, redesign that section.
+
+The final homepage should feel:
+
+Premium.
+
+Distinctive.
+
+Product-led.
+
+Interactive.
+
+Focused.
+
+Modern.
+
+Conversion-oriented.
+
+Technically polished.
+
+The visitor should finish the page understanding exactly this:
+
+"I can capture my work immediately, organize it later, keep my personal tasks focused, move collaborative work into team sprints, see progress clearly, and automate repetitive workflow actions."
+
+Do not provide a theoretical explanation.
+
+Implement the homepage directly in the existing codebase.
