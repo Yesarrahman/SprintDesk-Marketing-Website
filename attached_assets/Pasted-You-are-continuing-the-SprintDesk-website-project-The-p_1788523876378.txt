@@ -1,0 +1,328 @@
+You are continuing the SprintDesk website project.
+
+The product strategy, positioning, capabilities, target audience, and website architecture have already been defined in the master project specification.
+
+Your task now is to build the GLOBAL DESIGN SYSTEM and WEBSITE FOUNDATION.
+
+Do not redesign the brand direction.
+
+The visual direction is:
+
+Premium SaaS
+Modern
+Dark-first
+Minimal but not empty
+Highly interactive
+Editorial typography
+Product-led
+Structured
+Professional
+Intelligent
+
+SprintDesk's core positioning is:
+
+"Where Personal Focus Meets Team Velocity."
+
+The core product journey is:
+
+Capture
+→ Triage
+→ Personal Task Flow OR Team Sprint Board
+→ Track Progress
+→ Automate
+
+==================================================
+1. CREATE THE DESIGN TOKEN SYSTEM
+==================================================
+
+Create reusable design tokens for:
+
+Colors
+Typography
+Spacing
+Border radius
+Shadows
+Borders
+Animation timing
+Z-index layers
+Breakpoints
+
+The visual system should use:
+
+Background:
+Deep near-black / charcoal
+
+Surface:
+Slightly elevated charcoal surfaces
+
+Primary accent:
+Premium indigo or violet
+
+Secondary accent:
+Restrained blue/cyan for interactive data and product highlights
+
+Text:
+High contrast off-white
+
+Secondary text:
+Muted gray
+
+Do not overuse gradients.
+
+Do not make every section look like a floating glass card.
+
+Use glass effects only for specific UI moments such as:
+
+- Sticky navigation
+- Floating interface panels
+- Interactive overlays
+
+==================================================
+2. TYPOGRAPHY
+==================================================
+
+Use a modern premium sans-serif.
+
+Preferred options:
+
+Geist
+Inter
+Inter Tight
+
+Create a complete typography scale for:
+
+Display heading
+H1
+H2
+H3
+H4
+Body large
+Body
+Small text
+Eyebrows
+Labels
+Buttons
+
+The typography should feel:
+
+Confident
+Technical
+Clean
+Editorial
+Modern
+
+Headlines should have strong visual hierarchy.
+
+Avoid giant headings that consume the entire screen without purpose.
+
+==================================================
+3. CREATE REUSABLE COMPONENTS
+==================================================
+
+Build reusable components for:
+
+Navbar
+Mobile navigation
+Primary button
+Secondary button
+Text link
+Section eyebrow
+Section heading
+Section description
+Feature card
+Product UI container
+Browser window frame
+Dashboard metric
+Badge
+Tag
+Avatar
+Tooltip
+Accordion
+Tabs
+Pricing card
+CTA section
+Footer
+
+All components should be reusable across the website.
+
+==================================================
+4. NAVIGATION
+==================================================
+
+Create the main navigation.
+
+Left:
+
+SprintDesk logo
+
+Center navigation:
+
+Product
+Solutions
+Resources
+Pricing
+
+Product dropdown:
+
+Capture Inbox
+Personal Task Flow
+Team Sprint Board
+Command Center
+Automations
+
+Solutions dropdown:
+
+For Managers
+For Remote Teams
+For Individuals
+For Growing Teams
+
+Resources dropdown:
+
+Blog
+Guides
+Templates
+Comparisons
+
+Right:
+
+Log In
+
+Primary CTA:
+
+Start Free →
+
+Desktop navigation should initially blend into the page.
+
+When scrolling:
+
+- Become slightly floating
+- Add subtle backdrop blur
+- Add thin border
+- Add soft shadow
+- Keep the transition smooth
+
+Create a polished mobile navigation.
+
+Do not simply collapse desktop links into an ugly dropdown.
+
+==================================================
+5. GLOBAL PAGE STRUCTURE
+==================================================
+
+Create reusable page layouts.
+
+Marketing page layout.
+
+SEO landing page layout.
+
+Blog article layout.
+
+Resource page layout.
+
+Include:
+
+Breadcrumb support where appropriate.
+
+Reusable CTA blocks.
+
+Related content sections.
+
+Internal linking areas.
+
+==================================================
+6. MOTION SYSTEM
+==================================================
+
+Create a consistent motion system.
+
+Use:
+
+Fade in
+Translate
+Scale subtly
+Stagger
+Layout transitions
+
+Motion should feel intentional.
+
+Avoid:
+
+Constant floating
+Bouncing
+Over-animation
+Distracting effects
+
+Support:
+
+prefers-reduced-motion.
+
+==================================================
+7. RESPONSIVE SYSTEM
+==================================================
+
+Create layouts for:
+
+Mobile
+Tablet
+Laptop
+Desktop
+Large desktop
+
+Do not treat mobile as a shrunk desktop.
+
+Complex product demos should simplify intelligently.
+
+==================================================
+8. TECHNICAL FOUNDATION
+==================================================
+
+Set up:
+
+SEO metadata architecture
+
+Reusable metadata functions
+
+Open Graph support
+
+Twitter card support
+
+Canonical URL support
+
+Structured data utilities
+
+Breadcrumb utilities
+
+Sitemap architecture
+
+Robots.txt architecture
+
+Use semantic HTML.
+
+Prioritize accessibility.
+
+Ensure:
+
+Keyboard navigation
+Focus states
+Color contrast
+ARIA labels where necessary
+
+==================================================
+9. IMPORTANT
+==================================================
+
+Do not build all page content yet.
+
+Focus only on:
+
+Global design system
+Reusable components
+Navigation
+Footer
+Page structure
+SEO foundation
+Responsive behavior
+Motion system
+
+The final result should create a strong visual and technical foundation for the rest of the SprintDesk website.

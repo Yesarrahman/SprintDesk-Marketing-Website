@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "SprintDesk Marketing Website"
+description = "A premium SaaS marketing website for SprintDesk, showing how personal capture becomes organized work and coordinated team execution through product-led storytelling, interactive demos, pricing, and audience-specific pages."
+version = "1.0.0"
+id = "artifacts/sprintdesk-marketing"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26151
+
+[services.development]
+run = "pnpm --filter @workspace/sprintdesk-marketing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/sprintdesk-marketing", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/sprintdesk-marketing/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26151"
+BASE_PATH = "/"

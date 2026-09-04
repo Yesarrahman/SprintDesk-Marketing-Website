@@ -1,6 +1,6 @@
-# [Project name]
+# SprintDesk Marketing Website
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Premium product-led marketing website for SprintDesk, showing the path from personal capture to coordinated team execution.
 
 ## Run & Operate
 
@@ -22,23 +22,36 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/sprintdesk-marketing/src/App.tsx` — marketing routes, product demonstrations, metadata, and shared shell
+- `artifacts/sprintdesk-marketing/src/index.css` — dark-first SprintDesk visual system and responsive styles
+- `artifacts/sprintdesk-marketing/public/robots.txt` — crawler rules
+- `artifacts/sprintdesk-marketing/public/sitemap.xml` — public marketing URL map
+- `.agents/skills/sprintdesk-frontend-experience/SKILL.md` — frontend/design authority
+- `.agents/skills/sprintdesk-seo-content-system/SKILL.md` — SEO/content authority
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The first build is a frontend-only marketing app; product demonstrations use local interactive state rather than invented backend data.
+- Wouter routes all public marketing, resource, and legal paths through one shared shell.
+- The homepage and feature routes use product UI as the primary explanatory asset, with the personal-focus × team-execution workflow as the narrative spine.
+- Metadata and JSON-LD are updated per route from the same React surface to keep page intent and visible content aligned.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Product-led SprintDesk homepage and capability library
+- Capture Inbox, triage, personal/team workspace, Sprint Board, calendar, Command Center, and automation demonstrations
+- How-it-works workflow narrative
+- Audience-specific manager, remote-team, and individual solution pages
+- Pricing, blog, guides, templates, article, and legal routes
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+No additional preferences recorded.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The marketing site is rooted at `/`; keep route links compatible with the artifact base path.
+- Keep marketing claims aligned with the approved SprintDesk product prompt and avoid adding unverified integrations, metrics, testimonials, or AI capabilities.
 
 ## Pointers
 
