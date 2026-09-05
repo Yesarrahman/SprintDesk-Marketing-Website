@@ -1,0 +1,345 @@
+Continue the SprintDesk website.
+
+Build the complete /features page.
+
+This page should not simply be a grid of feature cards.
+
+The page should organize SprintDesk capabilities around outcomes.
+
+The primary narrative is:
+
+Capture → Organize → Focus → Execute → Monitor → Automate
+
+==================================================
+HERO
+==================================================
+
+Eyebrow:
+
+EVERYTHING CONNECTED
+
+Headline:
+
+One workspace for every stage of the work.
+
+Supporting copy:
+
+From the first thought to the final task, SprintDesk keeps personal focus and team execution connected.
+
+==================================================
+FEATURE CATEGORY 01
+==================================================
+
+CAPTURE
+
+Headline:
+
+Catch work before it disappears.
+
+Feature:
+
+Capture Inbox
+
+Explain:
+
+Quickly capture tasks, ideas, notes, and links without interrupting your current work.
+
+Show product UI.
+
+==================================================
+FEATURE CATEGORY 02
+==================================================
+
+TRIAGE
+
+Headline:
+
+Decide where the work belongs.
+
+Show:
+
+Triage to Board flow.
+
+Personal workspace.
+
+Team workspace.
+
+Board selection.
+
+Priority.
+
+==================================================
+FEATURE CATEGORY 03
+==================================================
+
+FOCUS
+
+Headline:
+
+Keep personal work personal.
+
+Features:
+
+Personal Dashboard
+Task Flow Board
+Due dates
+Productivity progress
+
+==================================================
+FEATURE CATEGORY 04
+==================================================
+
+EXECUTE
+
+Headline:
+
+Turn individual tasks into team momentum.
+
+Features:
+
+Team Sprint Board
+Story Points
+Swimlanes
+Epics
+Tags
+Task assignments
+
+==================================================
+FEATURE CATEGORY 05
+==================================================
+
+MONITOR
+
+Headline:
+
+See what's moving—and what's stuck.
+
+Features:
+
+Sprint progress
+Velocity
+Blockers
+Team workload
+Activity
+
+==================================================
+FEATURE CATEGORY 06
+==================================================
+
+PLAN
+
+Headline:
+
+See the work ahead.
+
+Feature:
+
+Interactive Calendar
+
+Show upcoming deadlines and task schedules.
+
+==================================================
+FEATURE CATEGORY 07
+==================================================
+
+AUTOMATE
+
+Headline:
+
+Stop manually managing predictable work.
+
+Feature:
+
+No-code automation engine.
+
+Show:
+
+Trigger
+↓
+
+Condition
+↓
+
+Action
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Everything connected. Nothing lost.
+
+CTA:
+
+Start Free →
+
+Requirements:
+
+Use detailed product visuals.
+
+Include internal links to individual feature pages.
+
+Use SEO-friendly semantic headings.
+
+Create metadata targeting SprintDesk features and task management software.
+
+Do not use repetitive feature-card grids.
+________________________________________
+Prompt 04 — How It Works Page
+Build the /how-it-works page for SprintDesk.
+
+This page should explain the complete SprintDesk workflow.
+
+The goal is to make a new visitor understand the product in less than 60 seconds.
+
+Core workflow:
+
+Capture
+→ Triage
+→ Focus
+→ Execute
+→ Monitor
+→ Automate
+
+==================================================
+HERO
+==================================================
+
+Headline:
+
+From a quick thought to coordinated execution.
+
+Supporting copy:
+
+SprintDesk turns scattered work into a clear workflow—without forcing personal productivity and team collaboration into separate tools.
+
+==================================================
+STEP 01
+==================================================
+
+CAPTURE
+
+Headline:
+
+Capture first. Think later.
+
+Explain the Capture Inbox.
+
+Show examples:
+
+"Fix mobile navbar"
+
+"Follow up with client"
+
+"Idea for onboarding"
+
+"Review sprint blockers"
+
+==================================================
+STEP 02
+==================================================
+
+TRIAGE
+
+Headline:
+
+Give the work a home.
+
+Show:
+
+Personal or Team Workspace.
+
+Select board.
+
+Select column.
+
+Set priority.
+
+==================================================
+STEP 03
+==================================================
+
+FOCUS
+
+Headline:
+
+Work without the noise.
+
+Show:
+
+Personal Task Flow.
+
+Personal Dashboard.
+
+Upcoming work.
+
+==================================================
+STEP 04
+==================================================
+
+EXECUTE
+
+Headline:
+
+Bring the team into the work.
+
+Show:
+
+Sprint Board.
+
+Story Points.
+
+Swimlanes.
+
+Assignments.
+
+==================================================
+STEP 05
+==================================================
+
+MONITOR
+
+Headline:
+
+Know what needs attention.
+
+Show:
+
+Sprint Progress.
+
+Velocity.
+
+Blockers.
+
+Workload.
+
+==================================================
+STEP 06
+==================================================
+
+AUTOMATE
+
+Headline:
+
+Let the workflow move itself.
+
+Show the no-code automation builder.
+
+==================================================
+FINAL SECTION
+==================================================
+
+Headline:
+
+One workflow. Two contexts. One source of truth.
+
+CTA:
+
+Start Free →
+
+Make the page visually demonstrate every step.
+
+Do not rely on long paragraphs.
+
+Use diagrams, product UI, and short explanations.
