@@ -128,6 +128,8 @@ const productLinks = [
   ['Capture Inbox', '/features#capture'],
   ['Personal Task Flow', '/features#tasks'],
   ['Personal task management', '/personal-task-management'],
+  ['Team task management', '/team-task-management'],
+  ['Remote team task management', '/remote-team-task-management'],
   ['Team Sprint Board', '/features#sprints'],
   ['Command Center', '/features#command-center'],
   ['Automations', '/features#automations'],
@@ -198,7 +200,7 @@ function Navbar() {
 
 function Footer() {
   const groups: [string, string[][]][] = [
-    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
+    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Team task management', '/team-task-management'], ['Remote team task management', '/remote-team-task-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
     ['SOLUTIONS', [['Managers', '/solutions/managers'], ['Remote teams', '/solutions/remote-teams'], ['Individuals', '/solutions/individuals']]],
     ['RESOURCES', [['Blog', '/resources/blog'], ['Guides', '/resources/guides'], ['Templates', '/resources/templates']]],
     ['COMPANY', [['About SprintDesk', '/'], ['Contact', '#footer-contact'], ['Privacy', '/privacy'], ['Terms', '/terms'], ['Security', '/security']]],
@@ -651,13 +653,133 @@ function PersonalTaskManagement() {
   </Shell>;
 }
 
+const teamFaq = [
+  { question: 'What is team task management?', answer: 'Team task management is the shared practice of assigning, organizing, prioritizing, and tracking work so everyone can see ownership, progress, and what needs attention next.' },
+  { question: 'How do teams keep tasks from falling through the cracks?', answer: 'Teams reduce dropped work by giving every task a clear owner, status, priority, and place on a shared board. Regular visibility into progress and blockers makes the next conversation more specific.' },
+  { question: 'How does SprintDesk support team coordination?', answer: 'SprintDesk combines a Team Sprint Board with assignees, story points, progress, tags, swimlanes, activity, and a Command Center for sprint progress, velocity, blockers, and workload.' },
+];
+
+const remoteFaq = [
+  { question: 'What is remote team task management?', answer: 'Remote team task management is the practice of organizing shared work across locations with visible ownership, deadlines, status, activity, and progress that does not depend on everyone being online together.' },
+  { question: 'How can remote teams organize tasks effectively?', answer: 'Start with one shared workspace, assign each task clearly, keep deadlines and status visible, and use activity and sprint progress to preserve context between asynchronous updates.' },
+  { question: 'How does SprintDesk support distributed collaboration?', answer: 'SprintDesk gives remote teams a shared Sprint Board for ownership and execution, plus visible activity, deadlines, workload, progress, and blockers so coordination can happen without endless status meetings.' },
+];
+
 function TeamTaskManagement() {
   return <Shell>
-    <Meta title="Team Task Management | Shared Workflows — SprintDesk" description="Keep team tasks visible with shared ownership, priorities, sprint progress, and a clear path from personal work to coordinated execution." path="/team-task-management" />
+    <Meta title="Team Task Management Software | SprintDesk" description="Give your team one shared place to assign work, track progress, see workload, identify blockers, and move work forward without more status meetings." path="/team-task-management" faq={teamFaq} />
     <main>
-      <section className="inner-hero team-task-hero"><div className="container-wide"><div className="eyebrow">Team task management</div><h1 className="display">Shared work should keep its context.</h1><p>Move from individual tasks to shared execution with visible ownership, progress, deadlines, and blockers.</p><div className="hero-actions"><Link href="/features#sprints" className="button-primary">Explore Sprint Boards <ArrowUpRight size={15} /></Link><Link href="/how-it-works#execute" className="button-secondary">See the handoff <ArrowRight size={15} /></Link></div></div></section>
-      <section className="inner-section team-task-proof"><div className="container-wide"><div className="team-task-heading"><div><div className="eyebrow">A shared place for the work</div><h2 className="display">Keep team tasks moving without another status ritual.</h2></div><p>Use a Sprint Board to make assignments, progress, swimlanes, tags, and activity visible to the people doing the work.</p></div><BoardDemo full /></div></section>
-      <FinalCTA />
+      <section className="inner-hero team-task-hero">
+        <div className="container-wide team-task-hero-grid">
+          <div className="team-task-hero-copy">
+            <div className="eyebrow">Team task management</div>
+            <h1 className="display">One place to see what your team is working on.</h1>
+            <p>SprintDesk helps teams organize tasks, track progress, manage priorities, and stay aligned from one shared workspace.</p>
+            <div className="hero-actions"><Link href="/pricing" className="button-primary" data-testid="link-team-task-start">Start Free <ArrowUpRight size={15} /></Link><Link href="/how-it-works#execute" className="button-secondary">See team execution <ArrowRight size={15} /></Link></div>
+          </div>
+          <div className="team-task-hero-visual"><div className="team-visual-label"><span>TEAM SPRINT BOARD</span><span>SPRINT 04 / 12 POINTS</span></div><BoardDemo full /></div>
+        </div>
+      </section>
+
+      <section className="team-benefits" data-reveal>
+        <div className="container-wide">
+          <div className="team-task-heading"><div><div className="eyebrow">Clarity without another meeting</div><h2 className="display">Make the next part of the work obvious.</h2></div><p>A shared task system should reduce the questions around the work, not create another place to maintain.</p></div>
+          <div className="team-benefit-list">
+            {[
+              ['01', 'Assign work clearly.', 'Every task has a visible owner and a place in the workflow.'],
+              ['02', 'Track progress visually.', 'Status and story points make the sprint easier to read at a glance.'],
+              ['03', 'See workload distribution.', 'Compare active work across assignees before priorities become capacity problems.'],
+              ['04', 'Identify blockers.', 'Open blockers stay close to the progress they affect.'],
+              ['05', 'Monitor activity.', 'Updates remain connected to the tasks they describe.'],
+              ['06', 'Keep everyone aligned.', 'The team works from one shared picture instead of separate status threads.'],
+            ].map(([number, title, body]) => <div className="team-benefit-row" key={number}><span>{number}</span><h3>{title}</h3><p>{body}</p><i aria-hidden="true"><ArrowRight size={14} /></i></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="team-board-section">
+        <div className="container-wide">
+          <div className="team-section-intro"><div><div className="eyebrow">Product demo / Team Sprint Board</div><h2 className="display">Shared execution, with the details still attached.</h2></div><p>See assignees, story points, progress, tags, and swimlanes together. Switch to swimlanes when the question is who owns the work, not just where the task sits.</p></div>
+          <BoardDemo full />
+          <div className="team-board-note"><span className="status-light" />Click a task to move it forward, or view swimlanes to read active work by assignee.</div>
+        </div>
+      </section>
+
+      <section className="team-manager-section" data-reveal>
+        <div className="container-wide team-manager-grid">
+          <div className="team-manager-copy"><div className="eyebrow">Manager visibility</div><h2 className="display">Stop chasing updates.</h2><p>Use the Command Center to see sprint progress, velocity, blockers, workload, and activity from the same system where the team does the work.</p><Link href="/features#command-center" className="text-link">Explore the Command Center <ArrowRight size={14} /></Link></div>
+          <CommandCenter />
+        </div>
+      </section>
+
+      <section className="team-answer" data-reveal>
+        <div className="container-wide">
+          <div className="team-answer-copy"><div className="eyebrow">A direct answer</div><h2 className="display">What is team task management?</h2><p className="team-answer-lede">Team task management is a shared system for assigning, organizing, prioritizing, and tracking work so everyone understands what is happening, who owns it, and what needs attention next.</p></div>
+          <div className="team-answer-grid"><div><span>01</span><h3>Manage tasks effectively</h3><p>Give each task a clear owner, status, priority, and next step. Keep the detail with the work so progress can be understood without recreating context.</p></div><div><span>02</span><h3>Prevent dropped work</h3><p>Use one shared board, visible deadlines, and activity so unfinished work does not disappear inside messages or disconnected lists.</p></div><div><span>03</span><h3>Coordinate with SprintDesk</h3><p>Move from personal focus to shared execution with a Sprint Board and Command Center that make ownership, progress, blockers, and workload visible.</p></div></div>
+        </div>
+      </section>
+
+      <section className="team-faq" data-reveal>
+        <div className="container-wide team-faq-layout"><div><div className="eyebrow">Questions teams ask</div><h2 className="display">A shared view of the work should be easy to explain.</h2><p>Start with the work itself, then use the same context to decide what happens next.</p></div><div className="faq-list">{teamFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
+      </section>
+
+      <section className="team-final-cta">
+        <div className="container-wide"><div className="eyebrow">Team execution, made visible</div><h2 className="display">Give your team one place to move work forward.</h2><Link href="/pricing" className="button-primary" data-testid="link-team-task-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="team-crosslinks"><Link href="/remote-team-task-management">Remote team task management <ArrowRight size={14} /></Link><Link href="/features#command-center">Team workload management <ArrowRight size={14} /></Link><Link href="/features#sprints">Sprint management <ArrowRight size={14} /></Link></div></div>
+      </section>
+    </main>
+  </Shell>;
+}
+
+function RemoteTeamTaskManagement() {
+  return <Shell>
+    <Meta title="Remote Team Task Management | SprintDesk" description="Keep remote work visible with shared ownership, async coordination, deadlines, activity, workload, and blockers in one team workspace." path="/remote-team-task-management" faq={remoteFaq} />
+    <main>
+      <section className="inner-hero remote-team-hero">
+        <div className="container-wide remote-team-hero-grid">
+          <div className="remote-team-hero-copy"><div className="eyebrow">Remote team task management</div><h1 className="display">Keep remote work visible—and everyone aligned.</h1><p>SprintDesk gives distributed teams a shared place to organize work, track progress, identify blockers, and stay aligned without endless status meetings.</p><div className="hero-actions"><Link href="/pricing" className="button-primary" data-testid="link-remote-team-start">Start Free <ArrowUpRight size={15} /></Link><Link href="/team-task-management" className="button-secondary">See team task management <ArrowRight size={15} /></Link></div></div>
+          <div className="remote-team-signal"><span>REMOTE WORK</span><i /><strong>One shared workspace</strong><small>Visible between meetings, across locations.</small></div>
+        </div>
+      </section>
+
+      <section className="remote-problem-section" data-reveal>
+        <div className="container-wide">
+          <div className="remote-section-heading"><div><div className="eyebrow">The remote work problem</div><h2 className="display">When work happens everywhere, context gets harder to find.</h2></div><p>Distributed teams need more than a stream of updates. They need a shared place where ownership, deadlines, and progress stay connected.</p></div>
+          <div className="remote-problem-list">{[['01', 'Messages everywhere.', 'The detail is spread across conversations.'], ['02', 'Updates scattered.', 'The latest status is hard to reconstruct.'], ['03', 'Tasks without owners.', 'The next step exists, but nobody can see who has it.'], ['04', 'Deadlines getting missed.', 'Commitments disappear when they are not attached to the workflow.']].map(([number, title, body]) => <div className="remote-problem-row" key={number}><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div><b>→ one shared workspace</b></div>)}</div>
+        </div>
+      </section>
+
+      <section className="remote-visibility-section">
+        <div className="container-wide remote-feature-grid">
+          <div className="remote-feature-copy"><div className="eyebrow">Async visibility</div><h2 className="display">See progress without asking for it.</h2><p>Activity feed, task status, and sprint progress give remote teams a shared operating picture even when schedules do not overlap.</p><div className="remote-proof-list"><span><i />Activity feed</span><span><i />Task status</span><span><i />Sprint progress</span></div></div>
+          <CommandCenter />
+        </div>
+      </section>
+
+      <section className="remote-ownership-section" data-reveal>
+        <div className="container-wide remote-feature-grid remote-feature-grid-reverse">
+          <div className="remote-board-wrap"><BoardDemo full /></div>
+          <div className="remote-feature-copy"><div className="eyebrow">Clear ownership</div><h2 className="display">Everyone knows what they own.</h2><p>Assignees, swimlanes, and workload make the handoff clear without requiring every person to be in the same room—or the same call.</p><Link href="/team-task-management" className="text-link">Explore team task management <ArrowRight size={14} /></Link></div>
+        </div>
+      </section>
+
+      <section className="remote-blockers-section" data-reveal>
+        <div className="container-wide">
+          <div className="remote-section-heading"><div><div className="eyebrow">Blockers in context</div><h2 className="display">Find problems before they become delays.</h2></div><p>Open blockers, at-risk tasks, and sprint progress belong in the same view, so a remote team can respond with context instead of guesswork.</p></div>
+          <div className="remote-risk-grid"><div><span>OPEN BLOCKERS</span><strong>03</strong><small>Visible in the current sprint.</small></div><div><span>AT-RISK TASKS</span><strong>02</strong><small>Prioritize the work that needs attention.</small></div><div><span>SPRINT PROGRESS</span><strong>78%</strong><small>Read progress without a status chase.</small></div></div>
+        </div>
+      </section>
+
+      <section className="remote-answer" data-reveal>
+        <div className="container-wide"><div className="team-answer-copy"><div className="eyebrow">A direct answer</div><h2 className="display">What is remote team task management?</h2><p className="team-answer-lede">Remote team task management is the practice of coordinating shared work across locations with visible owners, deadlines, status, activity, and progress that stays useful between conversations.</p></div><div className="remote-answer-points"><div><span>01</span><h3>Organize tasks across locations</h3><p>Use one shared Sprint Board with clear owners, status, deadlines, tags, and swimlanes.</p></div><div><span>02</span><h3>Maintain manager visibility</h3><p>Read activity, workload, sprint progress, and blockers without turning visibility into surveillance.</p></div><div><span>03</span><h3>Support distributed collaboration</h3><p>Keep the context with the work so asynchronous updates can still lead to coordinated execution.</p></div></div></div>
+      </section>
+
+      <section className="team-faq" data-reveal>
+        <div className="container-wide team-faq-layout"><div><div className="eyebrow">Questions remote teams ask</div><h2 className="display">Coordination that works across time and place.</h2><p>Visibility is useful when it helps people decide what to do next—not when it asks them to prove they are busy.</p></div><div className="faq-list">{remoteFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
+      </section>
+
+      <section className="team-final-cta remote-final-cta">
+        <div className="container-wide"><div className="eyebrow">Async work, shared context</div><h2 className="display">Less status chasing. More progress.</h2><Link href="/pricing" className="button-primary" data-testid="link-remote-team-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="team-crosslinks"><Link href="/team-task-management">Team task management <ArrowRight size={14} /></Link><Link href="/how-it-works">See how SprintDesk works <ArrowRight size={14} /></Link><Link href="/features#command-center">Explore team visibility <ArrowRight size={14} /></Link></div></div>
+      </section>
     </main>
   </Shell>;
 }
@@ -751,6 +873,7 @@ function Router() {
     <Route path="/how-it-works" component={HowItWorks} />
     <Route path="/personal-task-management" component={PersonalTaskManagement} />
     <Route path="/team-task-management" component={TeamTaskManagement} />
+    <Route path="/remote-team-task-management" component={RemoteTeamTaskManagement} />
     <Route path="/solutions/managers"><SolutionPage kind="managers" /></Route>
     <Route path="/solutions/remote-teams"><SolutionPage kind="remote-teams" /></Route>
     <Route path="/solutions/individuals"><SolutionPage kind="individuals" /></Route>
