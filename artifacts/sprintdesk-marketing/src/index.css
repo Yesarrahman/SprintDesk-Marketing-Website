@@ -2226,3 +2226,261 @@ body,
   .remote-problem-row b { grid-column: 2; }
   .remote-risk-grid strong { margin-top: 24px; font-size: 37px; }
 }
+
+/* Dedicated workload and sprint search pages. These routes share the same
+   product surfaces as the team page but give each search intent its own
+   information hierarchy. */
+.workload-hero,
+.sprint-management-hero {
+  padding-bottom: 96px;
+  border-bottom-color: rgb(123 164 208 / .45);
+  background: linear-gradient(180deg, rgb(46 94 153 / .15), transparent 82%);
+}
+.workload-hero-grid,
+.sprint-management-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(270px, .8fr) minmax(0, 1.2fr);
+  gap: 72px;
+  align-items: center;
+}
+.workload-hero-copy h1,
+.sprint-management-hero-copy h1 {
+  max-width: 620px;
+  margin: 15px 0 20px;
+  font-size: clamp(43px, 5.5vw, 71px);
+}
+.workload-hero-copy p,
+.sprint-management-hero-copy p {
+  max-width: 500px;
+  color: hsl(var(--muted-foreground));
+  font-size: 17px;
+  line-height: 1.7;
+}
+.workload-hero-visual,
+.sprint-management-hero-visual {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid rgb(123 164 208 / .65);
+  background: rgb(46 94 153 / .12);
+}
+.workload-visual-label,
+.sprint-visual-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 0 2px 13px;
+  color: var(--sapphire-soft);
+  font: 10px var(--app-font-mono);
+  letter-spacing: .08em;
+}
+.workload-hero-visual > #demo-command-center,
+.sprint-management-hero-visual > .wide-board {
+  box-shadow: none;
+  border-radius: 3px;
+}
+.workload-problem-section,
+.sprint-problem-section {
+  padding: 112px 0 120px;
+  background: rgb(46 94 153 / .08);
+  border-bottom: 1px solid rgb(46 94 153 / .58);
+}
+.workload-signal-list,
+.sprint-signal-list {
+  margin-top: 67px;
+  border-top: 1px solid rgb(46 94 153 / .7);
+}
+.workload-signal-row,
+.sprint-signal-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) minmax(190px, .65fr);
+  gap: 20px;
+  align-items: center;
+  min-height: 91px;
+  border-bottom: 1px solid rgb(46 94 153 / .48);
+}
+.workload-signal-row > span,
+.sprint-signal-row > span {
+  color: var(--sapphire-soft);
+  font: 11px var(--app-font-mono);
+}
+.workload-signal-row h3,
+.sprint-signal-row h3 {
+  margin: 0 0 3px;
+  font-size: 17px;
+}
+.workload-signal-row p,
+.sprint-signal-row p {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+}
+.workload-signal-row b,
+.sprint-signal-row b {
+  color: var(--sapphire-soft);
+  font: 10px var(--app-font-mono);
+  font-weight: 400;
+}
+.workload-view-section,
+.sprint-visibility-section {
+  padding: 120px 0;
+  background: var(--sapphire-navy);
+  border-bottom: 1px solid rgb(46 94 153 / .58);
+}
+.workload-view-grid,
+.workload-ownership-grid,
+.sprint-visibility-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: 80px;
+  align-items: center;
+}
+.workload-view-copy h2 {
+  max-width: 560px;
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 4.5vw, 57px);
+}
+.workload-view-copy > p {
+  max-width: 430px;
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 15px;
+  line-height: 1.7;
+}
+.workload-proof-list {
+  display: grid;
+  gap: 13px;
+  align-items: start;
+  margin-top: 29px;
+}
+.workload-proof-list span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: hsl(var(--foreground));
+  font: 11px var(--app-font-mono);
+}
+.workload-proof-list i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--sapphire-soft);
+  border-radius: 50%;
+}
+.workload-ownership-section,
+.sprint-board-management-section {
+  padding: 120px 0;
+  background: rgb(46 94 153 / .09);
+  border-bottom: 1px solid rgb(46 94 153 / .58);
+}
+.workload-ownership-grid {
+  grid-template-columns: minmax(0, 1.28fr) minmax(250px, .72fr);
+}
+.workload-board-wrap {
+  min-width: 0;
+}
+.workload-board-wrap .wide-board,
+.sprint-board-management-section .wide-board {
+  padding: 18px;
+  border-radius: 3px;
+  box-shadow: none;
+}
+.sprint-board-management-section .team-section-intro {
+  margin-bottom: 46px;
+}
+.sprint-visibility-grid {
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+}
+.workload-answer,
+.sprint-answer {
+  background: rgb(46 94 153 / .1);
+}
+.workload-final-cta {
+  background: rgb(46 94 153 / .16);
+}
+.sprint-final-cta {
+  background: rgb(46 94 153 / .16);
+}
+
+@media (max-width: 900px) {
+  .workload-hero-grid,
+  .sprint-management-hero-grid,
+  .workload-view-grid,
+  .workload-ownership-grid,
+  .sprint-visibility-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+  .workload-hero-visual,
+  .sprint-management-hero-visual {
+    margin-top: 8px;
+  }
+  .workload-signal-row,
+  .sprint-signal-row {
+    grid-template-columns: 40px minmax(0, 1fr) minmax(160px, .55fr);
+    gap: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .workload-hero,
+  .sprint-management-hero,
+  .workload-problem-section,
+  .sprint-problem-section,
+  .workload-view-section,
+  .workload-ownership-section,
+  .sprint-board-management-section,
+  .sprint-visibility-section {
+    padding-block: 76px;
+  }
+  .workload-hero-copy h1,
+  .sprint-management-hero-copy h1 {
+    font-size: 44px;
+  }
+  .workload-hero-copy p,
+  .sprint-management-hero-copy p {
+    font-size: 15px;
+  }
+  .workload-hero .hero-actions,
+  .sprint-management-hero .hero-actions {
+    width: min(290px, 100%);
+  }
+  .workload-hero-visual,
+  .sprint-management-hero-visual {
+    padding: 10px;
+  }
+  .workload-visual-label,
+  .sprint-visual-label {
+    font-size: 8px;
+  }
+  .workload-signal-list,
+  .sprint-signal-list {
+    margin-top: 43px;
+  }
+  .workload-signal-row,
+  .sprint-signal-row {
+    grid-template-columns: 30px 1fr;
+    gap: 9px;
+    padding: 18px 0;
+  }
+  .workload-signal-row b,
+  .sprint-signal-row b {
+    grid-column: 2;
+  }
+  .workload-view-copy h2 {
+    font-size: 34px;
+  }
+  .workload-board-wrap .wide-board,
+  .sprint-board-management-section .wide-board {
+    padding: 11px;
+  }
+  .workload-board-wrap .board-columns,
+  .sprint-board-management-section .board-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
+    overflow: visible;
+  }
+  .workload-board-wrap .kanban-card,
+  .sprint-board-management-section .kanban-card {
+    min-width: 0;
+    padding: 8px;
+  }
+}

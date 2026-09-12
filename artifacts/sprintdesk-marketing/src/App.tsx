@@ -130,6 +130,8 @@ const productLinks = [
   ['Personal task management', '/personal-task-management'],
   ['Team task management', '/team-task-management'],
   ['Remote team task management', '/remote-team-task-management'],
+  ['Team workload management', '/team-workload-management'],
+  ['Sprint management', '/sprint-management'],
   ['Team Sprint Board', '/features#sprints'],
   ['Command Center', '/features#command-center'],
   ['Automations', '/features#automations'],
@@ -200,7 +202,7 @@ function Navbar() {
 
 function Footer() {
   const groups: [string, string[][]][] = [
-    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Team task management', '/team-task-management'], ['Remote team task management', '/remote-team-task-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
+    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Team task management', '/team-task-management'], ['Remote team task management', '/remote-team-task-management'], ['Team workload management', '/team-workload-management'], ['Sprint management', '/sprint-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
     ['SOLUTIONS', [['Managers', '/solutions/managers'], ['Remote teams', '/solutions/remote-teams'], ['Individuals', '/solutions/individuals']]],
     ['RESOURCES', [['Blog', '/resources/blog'], ['Guides', '/resources/guides'], ['Templates', '/resources/templates']]],
     ['COMPANY', [['About SprintDesk', '/'], ['Contact', '#footer-contact'], ['Privacy', '/privacy'], ['Terms', '/terms'], ['Security', '/security']]],
@@ -665,6 +667,19 @@ const remoteFaq = [
   { question: 'How does SprintDesk support distributed collaboration?', answer: 'SprintDesk gives remote teams a shared Sprint Board for ownership and execution, plus visible activity, deadlines, workload, progress, and blockers so coordination can happen without endless status meetings.' },
 ];
 
+const workloadFaq = [
+  { question: 'What is team workload management?', answer: 'Team workload management is the practice of making active work and ownership visible so a team can understand how work is distributed, where attention is concentrated, and what needs review next.' },
+  { question: 'How can managers see team workload?', answer: 'Managers can review workload alongside sprint progress, blockers, and activity in SprintDesk’s Command Center, then use the Sprint Board and swimlanes to understand the tasks behind the view.' },
+  { question: 'Does SprintDesk automatically rebalance workload?', answer: 'No. SprintDesk makes workload distribution and ownership visible so teams can have a better-informed conversation about priorities and next steps.' },
+ ];
+
+const sprintFaq = [
+  { question: 'What is sprint management?', answer: 'Sprint management is the practice of planning, organizing, and tracking shared work through a focused sprint so a team can see ownership, progress, and what needs attention next.' },
+  { question: 'How does a sprint board help a team?', answer: 'A sprint board gives shared work a visible status, owner, story point value, tag, and place in the workflow. Swimlanes add another way to read active work by assignee.' },
+  { question: 'How does SprintDesk show sprint progress?', answer: 'SprintDesk combines the Team Sprint Board with the Command Center, where teams can review sprint progress, team velocity, open blockers, workload, and activity.' },
+  { question: 'Can personal tasks become sprint work?', answer: 'Yes. SprintDesk keeps personal focus separate until a task is ready to move into shared execution, where its ownership, points, status, and board context become visible to the team.' },
+];
+
 function TeamTaskManagement() {
   return <Shell>
     <Meta title="Team Task Management Software | SprintDesk" description="Give your team one shared place to assign work, track progress, see workload, identify blockers, and move work forward without more status meetings." path="/team-task-management" faq={teamFaq} />
@@ -723,8 +738,119 @@ function TeamTaskManagement() {
         <div className="container-wide team-faq-layout"><div><div className="eyebrow">Questions teams ask</div><h2 className="display">A shared view of the work should be easy to explain.</h2><p>Start with the work itself, then use the same context to decide what happens next.</p></div><div className="faq-list">{teamFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
       </section>
 
-      <section className="team-final-cta">
-        <div className="container-wide"><div className="eyebrow">Team execution, made visible</div><h2 className="display">Give your team one place to move work forward.</h2><Link href="/pricing" className="button-primary" data-testid="link-team-task-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="team-crosslinks"><Link href="/remote-team-task-management">Remote team task management <ArrowRight size={14} /></Link><Link href="/features#command-center">Team workload management <ArrowRight size={14} /></Link><Link href="/features#sprints">Sprint management <ArrowRight size={14} /></Link></div></div>
+       <section className="team-final-cta">
+         <div className="container-wide"><div className="eyebrow">Team execution, made visible</div><h2 className="display">Give your team one place to move work forward.</h2><Link href="/pricing" className="button-primary" data-testid="link-team-task-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="team-crosslinks"><Link href="/remote-team-task-management">Remote team task management <ArrowRight size={14} /></Link><Link href="/team-workload-management">Team workload management <ArrowRight size={14} /></Link><Link href="/sprint-management">Sprint management <ArrowRight size={14} /></Link></div></div>
+      </section>
+    </main>
+  </Shell>;
+}
+
+function TeamWorkloadManagement() {
+  return <Shell>
+    <Meta title="Team Workload Management Software | SprintDesk" description="See team workload, active ownership, sprint context, blockers, and activity in one shared view with SprintDesk." path="/team-workload-management" faq={workloadFaq} />
+    <main>
+      <section className="inner-hero workload-hero">
+        <div className="container-wide workload-hero-grid">
+          <div className="workload-hero-copy">
+            <div className="eyebrow">Team workload management</div>
+            <h1 className="display">See team workload before it becomes a bottleneck.</h1>
+            <p>Understand how active work is distributed across assignees, then review the sprint context, blockers, and activity behind the numbers.</p>
+            <div className="hero-actions"><Link href="/pricing" className="button-primary" data-testid="link-workload-start">Start Free <ArrowUpRight size={15} /></Link><Link href="/team-task-management" className="button-secondary">See team task management <ArrowRight size={15} /></Link></div>
+          </div>
+          <div className="workload-hero-visual"><div className="workload-visual-label"><span>COMMAND CENTER</span><span>THIS SPRINT</span></div><CommandCenter /></div>
+        </div>
+      </section>
+
+      <section className="workload-problem-section" data-reveal>
+        <div className="container-wide">
+          <div className="team-section-intro"><div><div className="eyebrow">The workload gap</div><h2 className="display">Distribution is easier to discuss when the work is visible.</h2></div><p>Workload is not a score. It is context for a better conversation about active ownership, sprint progress, and what needs attention.</p></div>
+          <div className="workload-signal-list">{[['01', 'Ownership is scattered.', 'The team has to reconstruct who is carrying active work.'], ['02', 'Uneven work stays hidden.', 'A full view makes concentrated effort easier to notice early.'], ['03', 'Blockers lose their context.', 'A workload conversation is stronger when it stays close to the tasks and progress it affects.'], ['04', 'Managers ask for another update.', 'Shared activity gives the next review a useful starting point.']].map(([number, title, body]) => <div className="workload-signal-row" key={number}><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div><b>→ shared context</b></div>)}</div>
+        </div>
+      </section>
+
+      <section className="workload-view-section">
+        <div className="container-wide workload-view-grid">
+          <div className="workload-view-copy"><div className="eyebrow">Workload view / Command Center</div><h2 className="display">Read distribution alongside the work that explains it.</h2><p>SprintDesk brings team workload together with sprint progress, team velocity, open blockers, and activity. Review the signal, then open the board context behind it.</p><div className="workload-proof-list"><span><i />Active work by assignee</span><span><i />Sprint progress and velocity</span><span><i />Open blockers in context</span><span><i />Live activity from the workflow</span></div><Link href="/features#command-center" className="text-link">Explore the Command Center <ArrowRight size={14} /></Link></div>
+          <CommandCenter />
+        </div>
+      </section>
+
+      <section className="workload-ownership-section" data-reveal>
+        <div className="container-wide workload-ownership-grid">
+          <div className="workload-board-wrap"><BoardDemo full /></div>
+          <div className="workload-view-copy"><div className="eyebrow">Ownership behind the signal</div><h2 className="display">See who owns the work—not just how much is active.</h2><p>Use the Sprint Board for task-level context, then switch to swimlanes when the question is who is carrying the work. Assignees, points, tags, and status stay attached.</p><Link href="/sprint-management" className="text-link">See sprint management <ArrowRight size={14} /></Link></div>
+        </div>
+      </section>
+
+      <section className="team-answer workload-answer" data-reveal>
+        <div className="container-wide">
+          <div className="team-answer-copy"><div className="eyebrow">A direct answer</div><h2 className="display">What is team workload management?</h2><p className="team-answer-lede">Team workload management is a shared way to see active work and ownership across a team, use sprint context to understand what is in motion, and decide what deserves review next.</p></div>
+          <div className="team-answer-grid"><div><span>01</span><h3>See active work</h3><p>Review how work is distributed across assignees instead of relying on separate lists or update threads.</p></div><div><span>02</span><h3>Keep the context attached</h3><p>Read workload with progress, blockers, activity, points, and the tasks that make the signal meaningful.</p></div><div><span>03</span><h3>Review with clarity</h3><p>Give managers and teams a shared picture for discussing priorities without turning visibility into surveillance.</p></div></div>
+        </div>
+      </section>
+
+      <section className="team-faq workload-faq" data-reveal>
+        <div className="container-wide team-faq-layout"><div><div className="eyebrow">Questions teams ask</div><h2 className="display">Workload visibility that starts with the work.</h2><p>Use the view to understand distribution, then use the board to decide what happens next.</p></div><div className="faq-list">{workloadFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
+      </section>
+
+      <section className="team-final-cta workload-final-cta">
+        <div className="container-wide"><div className="eyebrow">A clearer team view</div><h2 className="display">Make workload part of the workflow, not another report.</h2><Link href="/pricing" className="button-primary" data-testid="link-workload-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="team-crosslinks"><Link href="/sprint-management">Sprint management <ArrowRight size={14} /></Link><Link href="/team-task-management">Team task management <ArrowRight size={14} /></Link><Link href="/solutions/managers">SprintDesk for managers <ArrowRight size={14} /></Link><Link href="/remote-team-task-management">Remote team workload <ArrowRight size={14} /></Link></div></div>
+      </section>
+    </main>
+  </Shell>;
+}
+
+function SprintManagement() {
+  return <Shell>
+    <Meta title="Sprint Management Software | SprintDesk" description="Plan and track shared sprint work with story points, visible progress, assignees, swimlanes, and blockers in SprintDesk." path="/sprint-management" faq={sprintFaq} />
+    <main>
+      <section className="inner-hero sprint-management-hero">
+        <div className="container-wide sprint-management-hero-grid">
+          <div className="sprint-management-hero-copy">
+            <div className="eyebrow">Sprint management</div>
+            <h1 className="display">Turn sprint work into a shared picture.</h1>
+            <p>Give your team one place to plan the work in motion, see progress, understand ownership, and keep blockers close to the tasks they affect.</p>
+            <div className="hero-actions"><Link href="/pricing" className="button-primary" data-testid="link-sprint-start">Start Free <ArrowUpRight size={15} /></Link><Link href="/how-it-works#execute" className="button-secondary">See team execution <ArrowRight size={15} /></Link></div>
+          </div>
+          <div className="sprint-management-hero-visual"><div className="sprint-visual-label"><span>TEAM SPRINT BOARD</span><span>SPRINT 04 / 12 POINTS</span></div><BoardDemo full /></div>
+        </div>
+      </section>
+
+      <section className="sprint-problem-section" data-reveal>
+        <div className="container-wide">
+          <div className="team-section-intro"><div><div className="eyebrow">The sprint gap</div><h2 className="display">A sprint should be easier to read than the status thread around it.</h2></div><p>Shared execution works when ownership, progress, and blockers stay close to the work instead of being rebuilt in meetings.</p></div>
+          <div className="sprint-signal-list">{[['01', 'Ownership is unclear.', 'A visible assignee gives every task a clear next conversation.'], ['02', 'Progress needs a status chase.', 'Columns and story points make movement easier to see at a glance.'], ['03', 'Blockers are detached.', 'Keep the issue with the task and sprint context it affects.'], ['04', 'The sprint loses its shape.', 'A shared board gives the team one place to orient and execute.']].map(([number, title, body]) => <div className="sprint-signal-row" key={number}><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div><b>→ one sprint board</b></div>)}</div>
+        </div>
+      </section>
+
+      <section className="sprint-board-management-section">
+        <div className="container-wide">
+          <div className="team-section-intro"><div><div className="eyebrow">Product demo / Sprint Board</div><h2 className="display">Plan and execute with the details still attached.</h2></div><p>Use columns for status, story points for shared progress language, assignees for ownership, tags for context, and swimlanes when you need to read active work by person.</p></div>
+          <BoardDemo full />
+          <div className="team-board-note"><span className="status-light" />Click a task to move it forward, or view swimlanes to read active work by assignee.</div>
+        </div>
+      </section>
+
+      <section className="sprint-visibility-section" data-reveal>
+        <div className="container-wide sprint-visibility-grid">
+          <div className="workload-view-copy"><div className="eyebrow">Execution → visibility</div><h2 className="display">The board shows the work. The Command Center shows the shape of the sprint.</h2><p>Connect task-level execution to a shared review of sprint progress, team velocity, open blockers, workload, and activity.</p><div className="workload-proof-list"><span><i />9 of 12 story points complete</span><span><i />3 open blockers</span><span><i />Workload by assignee</span><span><i />Activity from the board</span></div><Link href="/team-workload-management" className="text-link">See team workload management <ArrowRight size={14} /></Link></div>
+          <CommandCenter />
+        </div>
+      </section>
+
+      <section className="team-answer sprint-answer" data-reveal>
+        <div className="container-wide">
+          <div className="team-answer-copy"><div className="eyebrow">A direct answer</div><h2 className="display">What is sprint management?</h2><p className="team-answer-lede">Sprint management is the practice of planning, organizing, and tracking shared work through a focused sprint so the team can understand ownership, progress, and what needs attention next.</p></div>
+          <div className="team-answer-grid"><div><span>01</span><h3>Plan the work in view</h3><p>Give shared tasks a place on the board, a status, an assignee, and the story point context the team uses to discuss progress.</p></div><div><span>02</span><h3>Track progress together</h3><p>Use columns, points, tags, and swimlanes to make the work legible without turning the board into a scoreboard.</p></div><div><span>03</span><h3>Respond to blockers</h3><p>Pair the board with Command Center visibility so the team can see blockers, workload, and activity in the same operating picture.</p></div></div>
+        </div>
+      </section>
+
+      <section className="team-faq sprint-faq" data-reveal>
+        <div className="container-wide team-faq-layout"><div><div className="eyebrow">Questions teams ask</div><h2 className="display">A sprint board should make the next step clearer.</h2><p>Keep personal focus separate until work is ready for shared execution, then give the team the context to move it together.</p></div><div className="faq-list">{sprintFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
+      </section>
+
+      <section className="team-final-cta sprint-final-cta">
+        <div className="container-wide"><div className="eyebrow">Shared execution, made visible</div><h2 className="display">Give every sprint a clear place to move forward.</h2><Link href="/pricing" className="button-primary" data-testid="link-sprint-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="team-crosslinks"><Link href="/team-workload-management">See team workload <ArrowRight size={14} /></Link><Link href="/team-task-management">Team task management <ArrowRight size={14} /></Link><Link href="/remote-team-task-management">Remote team task management <ArrowRight size={14} /></Link><Link href="/features#sprints">Explore sprint boards <ArrowRight size={14} /></Link><Link href="/features#command-center">Explore team visibility <ArrowRight size={14} /></Link></div></div>
       </section>
     </main>
   </Shell>;
@@ -873,6 +999,8 @@ function Router() {
     <Route path="/how-it-works" component={HowItWorks} />
     <Route path="/personal-task-management" component={PersonalTaskManagement} />
     <Route path="/team-task-management" component={TeamTaskManagement} />
+    <Route path="/team-workload-management" component={TeamWorkloadManagement} />
+    <Route path="/sprint-management" component={SprintManagement} />
     <Route path="/remote-team-task-management" component={RemoteTeamTaskManagement} />
     <Route path="/solutions/managers"><SolutionPage kind="managers" /></Route>
     <Route path="/solutions/remote-teams"><SolutionPage kind="remote-teams" /></Route>
