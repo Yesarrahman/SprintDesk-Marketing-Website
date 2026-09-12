@@ -1,0 +1,221 @@
+Prompt 08 — Sprint Management Page
+Build /sprint-management.
+
+Primary topic:
+
+Sprint management software.
+
+Target audience:
+
+Agile teams
+Product teams
+Development teams
+Team leads
+
+Do not pretend SprintDesk supports features that are not part of the product specification.
+
+Focus on actual capabilities:
+
+Sprint Board
+Story points
+Story progress
+Swimlanes
+Epics
+Tags
+Velocity
+Blockers
+
+==================================================
+HERO
+==================================================
+
+Headline:
+
+Turn every sprint into visible momentum.
+
+Supporting copy:
+
+Plan work, track progress, see blockers, and understand how your team is moving—all from one connected sprint workspace.
+
+CTA:
+
+Start Free →
+
+==================================================
+SECTION — SPRINT BOARD
+==================================================
+
+Show:
+
+Backlog
+Todo
+In Progress
+Review
+Completed
+
+Interactive task movement.
+
+==================================================
+SECTION — STORY POINTS
+==================================================
+
+Headline:
+
+See the effort behind the work.
+
+Explain how Story Points provide structured sprint context.
+
+==================================================
+SECTION — SWIMLANES
+==================================================
+
+Headline:
+
+See how work is distributed across the team.
+
+Show tasks grouped by assignee.
+
+==================================================
+SECTION — SPRINT VISIBILITY
+==================================================
+
+Show:
+
+Sprint progress.
+
+Velocity.
+
+Blockers.
+
+==================================================
+AEO SECTION
+==================================================
+
+Question:
+
+What is sprint management?
+
+Give a direct answer.
+
+Include:
+
+How sprint boards work.
+
+What story points are.
+
+Why visibility matters.
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Plan clearly. Execute together.
+
+CTA:
+
+Start Free →
+________________________________________
+Prompt 09 — Team Workload Management Page
+Build /team-workload-management.
+
+Primary topic:
+
+Team workload management.
+
+Target audience:
+
+Managers
+Team leads
+Growing teams
+
+Core message:
+
+Understand how work is distributed without micromanaging people.
+
+==================================================
+HERO
+==================================================
+
+Headline:
+
+See who's carrying the work.
+
+Supporting copy:
+
+SprintDesk gives managers a clear view of active work, completed tasks, workload distribution, and blockers—without chasing status updates.
+
+CTA:
+
+Start Free →
+
+==================================================
+SECTION — WORKLOAD VISIBILITY
+==================================================
+
+Show:
+
+Team members.
+
+Active tasks.
+
+Completed tasks.
+
+Use a realistic workload visualization.
+
+==================================================
+SECTION — SWIMLANES
+==================================================
+
+Headline:
+
+See workload directly on the board.
+
+Show tasks grouped by assignee.
+
+==================================================
+SECTION — COMMAND CENTER
+==================================================
+
+Show:
+
+Sprint progress.
+
+Velocity.
+
+Open blockers.
+
+Team activity.
+
+==================================================
+AEO SECTION
+==================================================
+
+Question:
+
+What is team workload management?
+
+Provide a direct definition.
+
+Then explain:
+
+Why workload visibility matters.
+
+How managers can identify uneven distribution.
+
+How SprintDesk supports workload visibility.
+
+Avoid unsupported claims about advanced forecasting or AI capacity planning.
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Visibility without micromanagement.
+
+CTA:
+
+Start Free →
