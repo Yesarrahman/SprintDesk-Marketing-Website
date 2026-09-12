@@ -1,0 +1,150 @@
+Build the /personal-task-management landing page.
+
+This is both:
+
+A product conversion page
+
+and
+
+An SEO landing page.
+
+Primary topic:
+
+Personal task management.
+
+The page must be genuinely useful and not keyword-stuffed.
+
+Position SprintDesk around:
+
+Capture Inbox
+Personal Task Flow
+Personal Dashboard
+Task organization
+Priorities
+Due dates
+Productivity visibility
+
+==================================================
+HERO
+==================================================
+
+Eyebrow:
+
+PERSONAL TASK MANAGEMENT
+
+Headline:
+
+Your work deserves a space of its own.
+
+Supporting copy:
+
+Capture tasks, organize priorities, and focus on what matters without getting buried in team activity.
+
+CTA:
+
+Start Free →
+
+==================================================
+PROBLEM
+==================================================
+
+Headline:
+
+Personal work gets lost in too many places.
+
+Show:
+
+Notes
+Sticky notes
+Chat messages
+Random to-do lists
+
+↓
+
+SprintDesk
+
+One connected personal workspace.
+
+==================================================
+FEATURE SECTIONS
+==================================================
+
+1. Capture everything
+
+Capture Inbox.
+
+2. Organize later
+
+Triage workflow.
+
+3. See today's priorities
+
+Personal Dashboard.
+
+4. Move work forward
+
+Task Flow Board.
+
+5. Plan around deadlines
+
+Calendar.
+
+==================================================
+AEO SECTION
+==================================================
+
+Include a direct answer section.
+
+Question:
+
+What is personal task management?
+
+Give a concise definition.
+
+Then explain:
+
+Why it matters.
+
+How to manage personal tasks.
+
+What features to look for.
+
+How SprintDesk approaches personal task management.
+
+==================================================
+FAQ
+==================================================
+
+Include useful questions such as:
+
+How do I organize personal tasks?
+
+What is the best way to prioritize tasks?
+
+Can I keep personal and team tasks separate?
+
+How does SprintDesk help manage personal tasks?
+
+Only add FAQs that provide genuine value.
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Focus on the work. Not on finding it.
+
+CTA:
+
+Start Free →
+
+Implement:
+
+Strong semantic structure.
+
+Internal links to:
+
+/team-task-management
+/how-it-works
+/features

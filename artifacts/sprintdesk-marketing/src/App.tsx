@@ -33,7 +33,7 @@ const stageLabels: { id: Stage; label: string }[] = [
   { id: 'automate', label: 'Automate' },
 ];
 
-function Meta({ title, description, path = '' }: { title: string; description: string; path?: string }) {
+function Meta({ title, description, path = '', faq }: { title: string; description: string; path?: string; faq?: { question: string; answer: string }[] }) {
   useEffect(() => {
     document.title = title;
     const setMeta = (name: string, content: string, property = false) => {
@@ -68,15 +68,29 @@ function Meta({ title, description, path = '' }: { title: string; description: s
       schema.type = 'application/ld+json';
       document.head.appendChild(schema);
     }
-    schema.textContent = JSON.stringify({
+    const softwareSchema = {
       '@context': 'https://schema.org',
       '@type': path === '/' ? ['Organization', 'WebSite', 'SoftwareApplication'] : 'SoftwareApplication',
       name: 'SprintDesk',
       url: `https://sprintdesk.app${path || window.location.pathname}`,
       description,
       applicationCategory: 'BusinessApplication',
-    });
-  }, [title, description, path]);
+    };
+    schema.textContent = JSON.stringify(faq?.length ? {
+      '@context': 'https://schema.org',
+      '@graph': [
+        softwareSchema,
+        {
+          '@type': 'FAQPage',
+          mainEntity: faq.map(({ question, answer }) => ({
+            '@type': 'Question',
+            name: question,
+            acceptedAnswer: { '@type': 'Answer', text: answer },
+          })),
+        },
+      ],
+    } : softwareSchema);
+  }, [title, description, path, faq]);
   return null;
 }
 
@@ -113,6 +127,7 @@ function MotionObserver() {
 const productLinks = [
   ['Capture Inbox', '/features#capture'],
   ['Personal Task Flow', '/features#tasks'],
+  ['Personal task management', '/personal-task-management'],
   ['Team Sprint Board', '/features#sprints'],
   ['Command Center', '/features#command-center'],
   ['Automations', '/features#automations'],
@@ -183,7 +198,7 @@ function Navbar() {
 
 function Footer() {
   const groups: [string, string[][]][] = [
-    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
+    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
     ['SOLUTIONS', [['Managers', '/solutions/managers'], ['Remote teams', '/solutions/remote-teams'], ['Individuals', '/solutions/individuals']]],
     ['RESOURCES', [['Blog', '/resources/blog'], ['Guides', '/resources/guides'], ['Templates', '/resources/templates']]],
     ['COMPANY', [['About SprintDesk', '/'], ['Contact', '#footer-contact'], ['Privacy', '/privacy'], ['Terms', '/terms'], ['Security', '/security']]],
@@ -425,7 +440,7 @@ function WorkflowSection() {
   </section>;
 }
 
-function PersonalFlowPreview() {
+function PersonalFlowPreview({ title = 'Personal Task Flow' }: { title?: string }) {
   const columns: [string, string[]][] = [
     ['Backlog', ['Client proposal']],
     ['Todo', ['Fix mobile navbar', 'Review feedback']],
@@ -433,7 +448,7 @@ function PersonalFlowPreview() {
     ['Review', ['Release checklist']],
   ];
   return <div className="hero-board-state workflow-personal-preview" data-testid="demo-personal-task-flow">
-    <div className="board-state-heading"><div><span className="eyebrow">Personal workspace</span><h3>Personal Task Flow</h3></div><span className="demo-count">4 due today</span></div>
+    <div className="board-state-heading"><div><span className="eyebrow">Personal workspace</span><h3>{title}</h3></div><span className="demo-count">4 due today</span></div>
     <div className="hero-columns">{columns.map(([name, tasks]) => <div className="hero-column" key={name}><div className="hero-column-title"><span>{name}</span><b>{tasks.length}</b></div>{tasks.map((task) => <div className={`hero-card ${task === 'Fix mobile navbar' ? 'selected-card' : ''}`} key={task}><strong>{task}</strong><small>{task === 'Fix mobile navbar' ? 'Todo · High' : 'Personal task'}</small></div>)}</div>)}</div>
     <div className="board-state-foot"><span className="route-chip">PERSONAL TASK FLOW</span><span>One thought, now in context.</span></div>
   </div>;
@@ -530,6 +545,123 @@ function HowItWorks() {
   return <Shell><Meta title="How SprintDesk Works | Capture to Coordinated Execution" description="Follow SprintDesk's workflow from Capture and Triage through Focus, Execute, Monitor, and Automate in one connected workspace." path="/how-it-works" /><main><section className="inner-hero workflow-hero"><div className="container-wide"><div className="eyebrow">How it works</div><h1 className="display">From a quick thought to coordinated execution.</h1><p>SprintDesk turns scattered work into a clear workflow—without forcing personal productivity and team collaboration into separate tools.</p></div></section><WorkflowStory /><section className="workflow-handoff"><div className="container-wide"><div className="handoff-copy"><div className="eyebrow">The handoff</div><h2 className="display">The task keeps its context as it moves.</h2><p>Capture privately, choose the next place deliberately, then let the shared board and Command Center make the work legible to everyone involved.</p><Link href="/features#tasks" className="text-link">Explore task management <ArrowRight size={14} /></Link></div><BoardDemo full /></div></section><FinalCTA /></main></Shell>;
 }
 
+const personalFaq = [
+  { question: 'How do I organize personal tasks?', answer: 'Start by capturing tasks in one inbox, then return to triage them when you have enough context. Give each task a clear next action, a workspace, a priority, and a due date when one matters.' },
+  { question: 'What is the best way to prioritize tasks?', answer: 'Separate what is urgent from what is simply visible. Choose the next meaningful action, keep today’s commitments easy to scan, and move lower-context work into a backlog until it is ready.' },
+  { question: 'Can I keep personal and team tasks separate?', answer: 'Yes. SprintDesk gives personal work its own workspace while keeping a deliberate path to team execution when a task is ready to move.' },
+  { question: 'How does SprintDesk help manage personal tasks?', answer: 'SprintDesk combines a Capture Inbox, triage workflow, Personal Dashboard, Task Flow Board, and calendar so personal work can be captured quickly, organized later, prioritized clearly, and planned around deadlines.' },
+];
+
+function PersonalWorkRail() {
+  return <div className="personal-work-rail" aria-label="Places personal work can get lost">
+    <div className="personal-rail-sources">
+      {['Notes', 'Sticky notes', 'Chat messages', 'Random to-do lists'].map((item, index) => <div className="personal-rail-source" key={item}><span>0{index + 1}</span><strong>{item}</strong><i aria-hidden="true" /></div>)}
+    </div>
+    <div className="personal-rail-route" aria-hidden="true"><span /><i /><span /><i /><span /></div>
+    <div className="personal-rail-destination"><span className="eyebrow">SprintDesk</span><strong>One connected personal workspace.</strong><small>Capture first. Organize when you are ready.</small></div>
+  </div>;
+}
+
+function PersonalTaskManagement() {
+  return <Shell>
+    <Meta title="Personal Task Management | Capture, Prioritize, and Focus — SprintDesk" description="Manage personal tasks in one connected workspace. Capture thoughts, organize priorities, plan around due dates, and focus without getting buried in team activity." path="/personal-task-management" faq={personalFaq} />
+    <main>
+      <section className="inner-hero personal-hero">
+        <div className="container-wide personal-hero-grid">
+          <div className="personal-hero-copy">
+            <div className="eyebrow">Personal task management</div>
+            <h1 className="display">Your work deserves a space of its own.</h1>
+            <p>Capture tasks, organize priorities, and focus on what matters without getting buried in team activity.</p>
+            <div className="hero-actions"><Link href="/pricing" className="button-primary" data-testid="link-personal-start">Start Free <ArrowUpRight size={15} /></Link></div>
+          </div>
+          <div className="personal-hero-visual">
+            <div className="personal-visual-label"><span>PERSONAL DASHBOARD</span><span>4 DUE TODAY</span></div>
+            <PersonalFlowPreview title="Personal Dashboard" />
+          </div>
+        </div>
+      </section>
+
+      <section className="personal-problem" data-reveal>
+        <div className="container-wide">
+          <div className="personal-section-heading"><div><div className="eyebrow">The personal work gap</div><h2 className="display">Personal work gets lost in too many places.</h2></div><p>When tasks live across notes, messages, and half-finished lists, the hard part is often finding the work again. SprintDesk gives incoming work a reliable first place to land.</p></div>
+          <PersonalWorkRail />
+        </div>
+      </section>
+
+      <section className="personal-feature-stack">
+        <article className="personal-feature personal-feature-capture" data-reveal>
+          <div className="container-wide personal-feature-grid">
+            <div className="personal-feature-copy"><div className="eyebrow">01 · Capture everything</div><h2 className="display">Give every thought a safe first place.</h2><p>Capture tasks, ideas, notes, and links in the Capture Inbox while they are still fresh. You do not need to decide what something means before you make sure it is not lost.</p><Link href="/features#capture" className="text-link">Explore Capture Inbox <ArrowRight size={14} /></Link></div>
+            <div className="personal-feature-visual"><CaptureDemo compact /></div>
+          </div>
+        </article>
+
+        <article className="personal-feature personal-feature-triage" data-reveal>
+          <div className="container-wide personal-feature-grid">
+            <div className="personal-feature-visual"><div className="workflow-triage-preview"><div className="eyebrow">Triage task · 01 / 04</div><h3>Fix mobile navbar</h3><p className="muted">Refine the navigation at the 390px breakpoint before the next release.</p><div className="triage-fields"><div><span>Workspace</span><strong>Personal</strong></div><div><span>Board column</span><strong>Todo</strong></div><div><span>Priority</span><strong className="accent-text">High</strong></div></div><Link href="/features#tasks" className="button-secondary">Organize this task <ArrowRight size={14} /></Link></div></div>
+            <div className="personal-feature-copy"><div className="eyebrow">02 · Organize later</div><h2 className="display">Let context arrive before structure.</h2><p>Return to the inbox when you can make a better decision. Triage each item into a workspace, board column, and priority instead of forcing organization into the moment of capture.</p><Link href="/how-it-works#triage" className="text-link">See the triage workflow <ArrowRight size={14} /></Link></div>
+          </div>
+        </article>
+
+        <article className="personal-feature personal-feature-dashboard" data-reveal>
+          <div className="container-wide personal-feature-grid">
+            <div className="personal-feature-copy"><div className="eyebrow">03 · See today’s priorities</div><h2 className="display">Know what deserves your attention next.</h2><p>The Personal Dashboard keeps today’s tasks, work in progress, and next actions visible without pulling team activity into every decision.</p><div className="personal-proof-line"><span className="status-light" />Personal workspace · 4 due today</div></div>
+            <div className="personal-feature-visual personal-board-visual"><PersonalFlowPreview title="Personal Dashboard" /></div>
+          </div>
+        </article>
+
+        <article className="personal-feature personal-feature-flow" data-reveal>
+          <div className="container-wide personal-feature-grid">
+            <div className="personal-feature-visual personal-board-visual"><PersonalFlowPreview title="Task Flow Board" /></div>
+            <div className="personal-feature-copy"><div className="eyebrow">04 · Move work forward</div><h2 className="display">Make progress visible to yourself.</h2><p>Use a focused Task Flow Board to see what is waiting, what is active, and what is ready for review. The next action should be easy to find when you return.</p><Link href="/features#tasks" className="text-link">Explore task management <ArrowRight size={14} /></Link></div>
+          </div>
+        </article>
+
+        <article className="personal-feature personal-feature-calendar" data-reveal>
+          <div className="container-wide personal-feature-grid">
+            <div className="personal-feature-copy"><div className="eyebrow">05 · Plan around deadlines</div><h2 className="display">Give due dates somewhere you can scan.</h2><p>Bring deadlines and scheduled tasks into a monthly view. Select a day to see the commitment that needs a place in your plan.</p><Link href="/features#calendar" className="text-link">Explore the calendar <ArrowRight size={14} /></Link></div>
+            <div className="personal-feature-visual"><CalendarDemo /></div>
+          </div>
+        </article>
+      </section>
+
+      <section className="personal-answer" data-reveal>
+        <div className="container-wide">
+          <div className="personal-answer-heading"><div className="eyebrow">A clear definition</div><h2 className="display">What is personal task management?</h2><p className="answer-lede">Personal task management is the practice of capturing, organizing, prioritizing, and planning the work you are responsible for so you can focus on the next meaningful action.</p></div>
+          <div className="personal-answer-grid">
+            <div><span>01</span><h3>Why it matters</h3><p>A trusted system reduces the effort of remembering what needs to happen and makes unfinished work easier to return to.</p></div>
+            <div><span>02</span><h3>How to manage personal tasks</h3><p>Capture quickly, triage when you have context, choose a clear next action, and use priorities and due dates to shape your day.</p></div>
+            <div><span>03</span><h3>What to look for</h3><p>Look for a private capture step, flexible organization, an at-a-glance priority view, a task flow, and a calendar that connects commitments to work.</p></div>
+            <div><span>04</span><h3>How SprintDesk approaches it</h3><p>SprintDesk keeps personal work separate from team activity while preserving a deliberate path into shared execution when a task is ready.</p><Link href="/how-it-works" className="text-link">Follow the complete workflow <ArrowRight size={14} /></Link></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="personal-faq" data-reveal>
+        <div className="container-wide personal-faq-layout">
+          <div><div className="eyebrow">Questions worth answering</div><h2 className="display">Personal task management, without the mystery.</h2><p>Useful systems are usually simpler than they look: one place to capture, one place to decide, and a clear view of what is next.</p></div>
+          <div className="faq-list">{personalFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+        </div>
+      </section>
+
+      <section className="personal-final-cta" id="personal-start">
+        <div className="container-wide"><div className="eyebrow">A quieter way to work</div><h2 className="display">Focus on the work. Not on finding it.</h2><Link href="/pricing" className="button-primary" data-testid="link-personal-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="personal-crosslinks"><Link href="/team-task-management">See team task management <ArrowRight size={14} /></Link><Link href="/features">Explore SprintDesk features <ArrowRight size={14} /></Link></div></div>
+      </section>
+    </main>
+  </Shell>;
+}
+
+function TeamTaskManagement() {
+  return <Shell>
+    <Meta title="Team Task Management | Shared Workflows — SprintDesk" description="Keep team tasks visible with shared ownership, priorities, sprint progress, and a clear path from personal work to coordinated execution." path="/team-task-management" />
+    <main>
+      <section className="inner-hero team-task-hero"><div className="container-wide"><div className="eyebrow">Team task management</div><h1 className="display">Shared work should keep its context.</h1><p>Move from individual tasks to shared execution with visible ownership, progress, deadlines, and blockers.</p><div className="hero-actions"><Link href="/features#sprints" className="button-primary">Explore Sprint Boards <ArrowUpRight size={15} /></Link><Link href="/how-it-works#execute" className="button-secondary">See the handoff <ArrowRight size={15} /></Link></div></div></section>
+      <section className="inner-section team-task-proof"><div className="container-wide"><div className="team-task-heading"><div><div className="eyebrow">A shared place for the work</div><h2 className="display">Keep team tasks moving without another status ritual.</h2></div><p>Use a Sprint Board to make assignments, progress, swimlanes, tags, and activity visible to the people doing the work.</p></div><BoardDemo full /></div></section>
+      <FinalCTA />
+    </main>
+  </Shell>;
+}
+
 type SolutionKey = 'managers' | 'remote-teams' | 'individuals';
 const solutionData: Record<SolutionKey, { eyebrow: string; title: string; desc: string; question: string; answer: string; points: string[] }> = {
   managers: { eyebrow: 'SprintDesk for managers', title: 'Visibility without the status chase.', desc: 'Keep an eye on progress, workload, ownership, and blockers from the same workspace where the work is happening.', question: 'How can managers identify blockers earlier?', answer: 'The Team Command Center brings sprint progress, team velocity, open blockers, team workload, and activity into one view. It replaces a chain of update requests with a shared operating picture.', points: ['Sprint progress and velocity', 'Open blockers in context', 'Workload by team member', 'Active and completed tasks'], },
@@ -617,6 +749,8 @@ function Router() {
     <Route path="/" component={Home} />
     <Route path="/features" component={Features} />
     <Route path="/how-it-works" component={HowItWorks} />
+    <Route path="/personal-task-management" component={PersonalTaskManagement} />
+    <Route path="/team-task-management" component={TeamTaskManagement} />
     <Route path="/solutions/managers"><SolutionPage kind="managers" /></Route>
     <Route path="/solutions/remote-teams"><SolutionPage kind="remote-teams" /></Route>
     <Route path="/solutions/individuals"><SolutionPage kind="individuals" /></Route>

@@ -1,0 +1,261 @@
+Prompt 06 — Team Task Management SEO Page
+Build /team-task-management.
+
+Primary search intent:
+
+Team task management software.
+
+Target audience:
+
+Managers
+Team leads
+Collaborative teams
+
+Core value proposition:
+
+Give everyone clarity without creating more meetings.
+
+==================================================
+HERO
+==================================================
+
+Headline:
+
+One place to see what your team is working on.
+
+Supporting copy:
+
+SprintDesk helps teams organize tasks, track progress, manage priorities, and stay aligned from one shared workspace.
+
+CTA:
+
+Start Free →
+
+==================================================
+CORE BENEFITS
+==================================================
+
+Assign work clearly.
+
+Track progress visually.
+
+See workload distribution.
+
+Identify blockers.
+
+Monitor activity.
+
+Keep everyone aligned.
+
+==================================================
+PRODUCT DEMO
+==================================================
+
+Show:
+
+Team Sprint Board.
+
+Assignees.
+
+Story points.
+
+Progress.
+
+Tags.
+
+Swimlanes.
+
+==================================================
+MANAGER VISIBILITY
+==================================================
+
+Headline:
+
+Stop chasing updates.
+
+Show Command Center.
+
+Sprint progress.
+
+Velocity.
+
+Blockers.
+
+Workload.
+
+==================================================
+AEO SECTION
+==================================================
+
+Question:
+
+What is team task management?
+
+Give a direct definition.
+
+Then explain:
+
+How teams manage tasks effectively.
+
+How to avoid tasks falling through the cracks.
+
+How SprintDesk supports team coordination.
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Give your team one place to move work forward.
+
+CTA:
+
+Start Free →
+
+Internal links:
+
+/remote-team-task-management
+/team-workload-management
+/sprint-management
+________________________________________
+Prompt 07 — Remote Team Task Management Page
+Build /remote-team-task-management.
+
+Primary audience:
+
+Remote teams.
+
+Primary problem:
+
+When work happens across locations, visibility becomes harder.
+
+SprintDesk should be positioned around:
+
+Visibility
+Shared execution
+Async coordination
+Task ownership
+Deadlines
+Activity
+Workload
+
+Do not focus on employee surveillance.
+
+Focus on coordination and clarity.
+
+==================================================
+HERO
+==================================================
+
+Eyebrow:
+
+REMOTE TEAM TASK MANAGEMENT
+
+Headline:
+
+Keep remote work visible—and everyone aligned.
+
+Supporting copy:
+
+SprintDesk gives distributed teams a shared place to organize work, track progress, identify blockers, and stay aligned without endless status meetings.
+
+CTA:
+
+Start Free →
+
+==================================================
+SECTION — THE REMOTE WORK PROBLEM
+==================================================
+
+Show:
+
+Messages everywhere.
+
+Updates scattered.
+
+Tasks without owners.
+
+Deadlines getting missed.
+
+Then transition to:
+
+One shared workspace.
+
+==================================================
+SECTION — ASYNC VISIBILITY
+==================================================
+
+Headline:
+
+See progress without asking for it.
+
+Show:
+
+Activity feed.
+
+Task status.
+
+Sprint progress.
+
+==================================================
+SECTION — CLEAR OWNERSHIP
+==================================================
+
+Headline:
+
+Everyone knows what they own.
+
+Show:
+
+Assignees.
+
+Swimlanes.
+
+Workload.
+
+==================================================
+SECTION — BLOCKERS
+==================================================
+
+Headline:
+
+Find problems before they become delays.
+
+Show:
+
+Open blockers.
+
+At-risk tasks.
+
+Sprint progress.
+
+==================================================
+AEO SECTION
+==================================================
+
+Question:
+
+What is remote team task management?
+
+Provide a direct definition.
+
+Then explain:
+
+How remote teams can organize tasks.
+
+How managers can maintain visibility.
+
+How SprintDesk supports distributed collaboration.
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Less status chasing. More progress.
+
+CTA:
+
+Start Free →
