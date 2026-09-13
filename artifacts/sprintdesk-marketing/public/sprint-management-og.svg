@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Sprint management software — SprintDesk</title>
+  <desc id="desc">A SprintDesk sprint board showing visible progress, story points, and ownership.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0D2440"/>
+      <stop offset="1" stop-color="#173A63"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7BA4D0" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#E7F0FA" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="80" r="230" fill="#7BA4D0" opacity=".08"/>
+  <path d="M0 570h1200" stroke="#7BA4D0" stroke-opacity=".22"/>
+  <rect x="64" y="56" width="1072" height="518" rx="24" fill="none" stroke="#7BA4D0" stroke-opacity=".3"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="96" y="112" fill="#E7F0FA" font-size="22" font-weight="700">SprintDesk</text>
+    <text x="96" y="178" fill="#7BA4D0" font-size="14" letter-spacing="4">SPRINT MANAGEMENT</text>
+    <text x="96" y="238" fill="#E7F0FA" font-size="45" font-weight="700">Turn every sprint into</text>
+    <text x="96" y="289" fill="#E7F0FA" font-size="45" font-weight="700">visible momentum.</text>
+    <text x="96" y="335" fill="#B9C9DB" font-size="18">Plan work, track progress, and keep blockers close</text>
+    <text x="96" y="362" fill="#B9C9DB" font-size="18">to the tasks they affect.</text>
+    <rect x="96" y="402" width="176" height="48" rx="10" fill="#7BA4D0"/>
+    <text x="128" y="433" fill="#0D2440" font-size="15" font-weight="700">START FREE ↗</text>
+  </g>
+  <g transform="translate(594 126)">
+    <rect width="482" height="354" rx="16" fill="#102D4E" stroke="#7BA4D0" stroke-opacity=".55"/>
+    <rect x="22" y="22" width="438" height="47" rx="8" fill="#173A63" stroke="#7BA4D0" stroke-opacity=".3"/>
+    <text x="42" y="51" fill="#E7F0FA" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Sprint 04 · Product foundations</text>
+    <text x="355" y="51" fill="#7BA4D0" font-family="Arial, Helvetica, sans-serif" font-size="11">9 / 12 POINTS</text>
+    <g transform="translate(22 91)" font-family="Arial, Helvetica, sans-serif">
+      <g>
+        <rect width="94" height="214" rx="8" fill="#0D2440" stroke="#7BA4D0" stroke-opacity=".5"/>
+        <text x="12" y="22" fill="#7BA4D0" font-size="10">BACKLOG</text>
+        <rect x="10" y="42" width="74" height="55" rx="6" fill="#1A2535" stroke="#7BA4D0" stroke-opacity=".6"/>
+        <text x="18" y="65" fill="#E7F0FA" font-size="11">Outline</text>
+        <text x="18" y="81" fill="#9FB1C6" font-size="10">2 pts</text>
+      </g>
+      <g transform="translate(108)">
+        <rect width="94" height="214" rx="8" fill="#0D2440" stroke="#7BA4D0" stroke-opacity=".5"/>
+        <text x="12" y="22" fill="#7BA4D0" font-size="10">TODO</text>
+        <rect x="10" y="42" width="74" height="55" rx="6" fill="#1A2535" stroke="#7BA4D0" stroke-opacity=".6"/>
+        <text x="18" y="65" fill="#E7F0FA" font-size="11">Navbar fix</text>
+        <text x="18" y="81" fill="#9FB1C6" font-size="10">3 pts · Sarah</text>
+        <rect x="10" y="108" width="74" height="55" rx="6" fill="#1A2535" stroke="#7BA4D0" stroke-opacity=".6"/>
+        <text x="18" y="131" fill="#E7F0FA" font-size="11">Empty state</text>
+      </g>
+      <g transform="translate(216)">
+        <rect width="94" height="214" rx="8" fill="#0D2440" stroke="#7BA4D0" stroke-opacity=".5"/>
+        <text x="12" y="22" fill="#7BA4D0" font-size="10">IN PROGRESS</text>
+        <rect x="10" y="42" width="74" height="55" rx="6" fill="#1A2535" stroke="#7BA4D0" stroke-opacity=".6"/>
+        <text x="18" y="65" fill="#E7F0FA" font-size="11">Onboarding</text>
+        <text x="18" y="81" fill="#9FB1C6" font-size="10">5 pts · Alex</text>
+      </g>
+      <g transform="translate(324)">
+        <rect width="94" height="214" rx="8" fill="#0D2440" stroke="#7BA4D0" stroke-opacity=".5"/>
+        <text x="12" y="22" fill="#7BA4D0" font-size="10">REVIEW</text>
+        <rect x="10" y="42" width="74" height="55" rx="6" fill="#1A2535" stroke="#7BA4D0" stroke-opacity=".6"/>
+        <text x="18" y="65" fill="#E7F0FA" font-size="11">API docs</text>
+        <text x="18" y="81" fill="#9FB1C6" font-size="10">2 pts</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,245 @@
+Prompt 10 — Workflow Automation Page
+Build /workflow-automation.
+
+Primary topic:
+
+Task and workflow automation.
+
+The product feature is:
+
+A no-code If This → Then That automation engine.
+
+Do not invent advanced automation capabilities beyond the product specification.
+
+Focus on:
+
+Status changes.
+
+Priority changes.
+
+Assignments.
+
+Rule-based actions.
+
+==================================================
+HERO
+==================================================
+
+Headline:
+
+Let your workflow handle the busywork.
+
+Supporting copy:
+
+Create simple no-code rules that automatically update tasks, change priorities, and assign work when the right conditions are met.
+
+CTA:
+
+Start Free →
+
+==================================================
+MAIN INTERACTIVE DEMO
+==================================================
+
+Build an automation rule builder.
+
+WHEN
+
+Task Status
+
+changes to
+
+In Review
+
+THEN
+
+Set Priority
+
+High
+
+AND
+
+Assign
+
+Project Manager
+
+Then show:
+
+AUTOMATION ACTIVE ✓
+
+Animate the resulting task updates.
+
+==================================================
+BENEFITS
+==================================================
+
+Reduce repetitive updates.
+
+Keep workflows consistent.
+
+Move tasks automatically.
+
+Reduce manual coordination.
+
+==================================================
+AEO SECTION
+==================================================
+
+Question:
+
+What is workflow automation?
+
+Give a direct definition.
+
+Then explain:
+
+How task automation works.
+
+When teams should automate workflows.
+
+How SprintDesk approaches automation.
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Build the rule once. Let the workflow repeat itself.
+
+CTA:
+
+Start Free →
+________________________________________
+Prompt 11 — Pricing Page
+Build /pricing.
+
+The page should feel transparent, clear, and premium.
+
+Do not invent pricing plans or capabilities.
+
+==================================================
+HERO
+==================================================
+
+Headline:
+
+Start simple. Scale when the work does.
+
+Supporting copy:
+
+Choose the SprintDesk workspace that fits how you work today.
+
+==================================================
+PRICING PLANS
+==================================================
+
+FREE
+
+$0
+
+Best for:
+
+Individual professionals.
+
+Includes:
+
+1 Personal Workspace.
+
+Up to 3 Team Workspaces.
+
+3–5 members per team.
+
+Core Kanban functionality.
+
+CTA:
+
+Start Free
+
+--------------------------------------------------
+
+PRO
+
+$8/month
+
+Badge:
+
+MOST POPULAR
+
+Best for:
+
+Growing collaborative teams.
+
+Includes:
+
+Everything in Free.
+
+Story Points tracking.
+
+Time Tracking.
+
+Unlimited team members.
+
+Advanced Swimlanes.
+
+CTA:
+
+Start Pro
+
+--------------------------------------------------
+
+ENTERPRISE
+
+$20/month
+
+Best for:
+
+Teams needing scale and automation.
+
+Includes:
+
+Everything in Pro.
+
+No-Code Automations Engine.
+
+Timesheet exports.
+
+Custom Client Portals.
+
+CTA:
+
+Choose Enterprise
+
+==================================================
+COMPARISON TABLE
+==================================================
+
+Create a clean responsive comparison table.
+
+Do not add unsupported features.
+
+==================================================
+FAQ
+==================================================
+
+Useful questions only.
+
+Examples:
+
+Can I start with the Free plan?
+
+What happens when my team grows?
+
+Which plan includes automations?
+
+==================================================
+FINAL CTA
+==================================================
+
+Headline:
+
+Start with the work you have today.
+
+CTA:
+
+Start Free →

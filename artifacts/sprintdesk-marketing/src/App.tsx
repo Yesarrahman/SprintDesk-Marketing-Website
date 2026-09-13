@@ -33,7 +33,7 @@ const stageLabels: { id: Stage; label: string }[] = [
   { id: 'automate', label: 'Automate' },
 ];
 
-function Meta({ title, description, path = '', faq }: { title: string; description: string; path?: string; faq?: { question: string; answer: string }[] }) {
+function Meta({ title, description, path = '', faq, image = 'https://sprintdesk.app/sprintdesk-logo.png', imageAlt = 'SprintDesk' }: { title: string; description: string; path?: string; faq?: { question: string; answer: string }[]; image?: string; imageAlt?: string }) {
   useEffect(() => {
     document.title = title;
     const setMeta = (name: string, content: string, property = false) => {
@@ -51,9 +51,15 @@ function Meta({ title, description, path = '', faq }: { title: string; descripti
     setMeta('og:description', description, true);
     setMeta('og:type', 'website', true);
     setMeta('og:url', `https://sprintdesk.app${path || window.location.pathname}`, true);
-    setMeta('og:image', 'https://sprintdesk.app/sprintdesk-logo.png', true);
+    setMeta('og:image', image, true);
+    setMeta('og:image:alt', imageAlt, true);
+    setMeta('og:image:width', '1200', true);
+    setMeta('og:image:height', '630', true);
     setMeta('twitter:card', 'summary_large_image');
-    setMeta('twitter:image', 'https://sprintdesk.app/sprintdesk-logo.png');
+    setMeta('twitter:title', title);
+    setMeta('twitter:description', description);
+    setMeta('twitter:image', image);
+    setMeta('twitter:image:alt', imageAlt);
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -90,7 +96,7 @@ function Meta({ title, description, path = '', faq }: { title: string; descripti
         },
       ],
     } : softwareSchema);
-  }, [title, description, path, faq]);
+  }, [title, description, path, faq, image, imageAlt]);
   return null;
 }
 
@@ -747,7 +753,7 @@ function TeamTaskManagement() {
 
 function TeamWorkloadManagement() {
   return <Shell>
-    <Meta title="Team Workload Management Software | SprintDesk" description="See team workload, active ownership, sprint context, blockers, and activity in one shared view with SprintDesk." path="/team-workload-management" faq={workloadFaq} />
+    <Meta title="Team Workload Management Software | SprintDesk" description="See team workload, active ownership, sprint context, blockers, and activity in one shared view with SprintDesk." path="/team-workload-management" faq={workloadFaq} image="https://sprintdesk.app/team-workload-management-og.png" imageAlt="SprintDesk team workload management Command Center" />
     <main>
       <section className="inner-hero workload-hero">
         <div className="container-wide workload-hero-grid">
@@ -802,7 +808,7 @@ function TeamWorkloadManagement() {
 
 function SprintManagement() {
   return <Shell>
-    <Meta title="Sprint Management Software | SprintDesk" description="Plan and track shared sprint work with story points, visible progress, assignees, swimlanes, and blockers in SprintDesk." path="/sprint-management" faq={sprintFaq} />
+    <Meta title="Sprint Management Software | SprintDesk" description="Plan and track shared sprint work with story points, visible progress, assignees, swimlanes, and blockers in SprintDesk." path="/sprint-management" faq={sprintFaq} image="https://sprintdesk.app/sprint-management-og.png" imageAlt="SprintDesk sprint board with story points and visible progress" />
     <main>
       <section className="inner-hero sprint-management-hero">
         <div className="container-wide sprint-management-hero-grid">
