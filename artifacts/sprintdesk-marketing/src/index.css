@@ -566,6 +566,338 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .problem-row { grid-template-columns: 40px 1fr 170px; }
   .sprint-board-section { padding-block: 90px; }
 }
+
+/* Workflow automation and pricing detail pages. */
+.automation-page-hero {
+  padding-bottom: 105px;
+  border-bottom-color: rgb(123 164 208 / .45);
+  background: linear-gradient(180deg, rgb(46 94 153 / .15), transparent 82%);
+}
+.automation-page-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(300px, .75fr);
+  gap: 84px;
+  align-items: center;
+}
+.automation-page-hero h1 {
+  max-width: 700px;
+  margin: 15px 0 20px;
+  font-size: clamp(44px, 6vw, 76px);
+}
+.automation-page-hero p {
+  max-width: 585px;
+  color: hsl(var(--muted-foreground));
+  font-size: 17px;
+  line-height: 1.7;
+}
+.automation-hero-signal {
+  min-height: 345px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  border: 1px solid rgb(123 164 208 / .65);
+  background: rgb(46 94 153 / .13);
+}
+.automation-hero-signal strong {
+  margin: 45px 0;
+  color: var(--sapphire-veil);
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: .98;
+  letter-spacing: -.06em;
+}
+.automation-hero-signal em {
+  color: var(--sapphire-soft);
+  font-style: normal;
+}
+.automation-signal-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--sapphire-soft);
+  font: 10px var(--app-font-mono);
+}
+.automation-signal-flow i {
+  flex: 1;
+  height: 1px;
+  background: var(--sapphire-soft);
+}
+.automation-demo-section {
+  padding: 112px 0 125px;
+  background: var(--sapphire-navy);
+  border-bottom: 1px solid rgb(46 94 153 / .58);
+}
+.automation-demo-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, .55fr);
+  gap: 75px;
+  align-items: end;
+  margin-bottom: 53px;
+}
+.automation-demo-heading h2,
+.automation-benefit-intro h2,
+.automation-answer-heading h2,
+.automation-faq-layout h2,
+.pricing-section-heading h2,
+.pricing-faq-layout h2,
+.pricing-final-cta h2 {
+  max-width: 690px;
+  margin: 14px 0 0;
+  font-size: clamp(34px, 4.6vw, 59px);
+}
+.automation-demo-heading > p,
+.pricing-section-heading > p,
+.automation-faq-layout > div > p,
+.pricing-faq-layout > div > p {
+  margin: 0 0 3px;
+  color: hsl(var(--muted-foreground));
+  font-size: 15px;
+  line-height: 1.7;
+}
+.automation-builder {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid rgb(123 164 208 / .7);
+  background: rgb(46 94 153 / .11);
+  box-shadow: 0 24px 80px rgb(5 20 36 / .28);
+}
+.automation-builder-head,
+.automation-result-top,
+.automation-task-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.automation-builder-head {
+  padding-bottom: 21px;
+  border-bottom: 1px solid rgb(46 94 153 / .58);
+}
+.automation-builder-head h3 {
+  margin: 11px 0 0;
+  color: var(--sapphire-veil);
+  font-size: 23px;
+}
+.automation-status {
+  color: hsl(var(--muted-foreground));
+  font: 10px var(--app-font-mono);
+  white-space: nowrap;
+}
+.automation-status i,
+.automation-task-result.is-updated::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: hsl(var(--muted-foreground));
+}
+.automation-status.is-active { color: var(--sapphire-soft); }
+.automation-status.is-active i { background: var(--sapphire-soft); box-shadow: 0 0 0 4px rgb(123 164 208 / .15); }
+.automation-rule-stack { margin: 24px 0 26px; }
+.automation-rule-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 15px 17px;
+  border: 1px solid rgb(46 94 153 / .7);
+  background: rgb(5 20 36 / .17);
+}
+.automation-rule-label {
+  color: var(--sapphire-soft);
+  font: 10px var(--app-font-mono);
+  letter-spacing: .08em;
+}
+.automation-rule-row label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+}
+.automation-rule-row select {
+  min-width: 185px;
+  padding: 9px 30px 9px 11px;
+  border: 1px solid rgb(123 164 208 / .58);
+  border-radius: 0;
+  background: var(--sapphire-deep);
+  color: var(--sapphire-veil);
+  font: 12px var(--app-font-mono);
+}
+.automation-connector {
+  height: 22px;
+  color: var(--sapphire-soft);
+  text-align: center;
+  font: 16px var(--app-font-mono);
+}
+.automation-builder > .button-secondary,
+.automation-builder > .button-primary {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+}
+.automation-task-result {
+  position: relative;
+  margin-top: 23px;
+  padding: 17px;
+  border: 1px solid rgb(46 94 153 / .58);
+  background: rgb(46 94 153 / .1);
+  transition: border-color .25s ease, background .25s ease;
+}
+.automation-task-result.is-updated {
+  border-color: rgb(123 164 208 / .85);
+  background: rgb(46 94 153 / .23);
+  animation: automation-update .4s var(--ease-out-expo);
+}
+.automation-result-top {
+  color: hsl(var(--muted-foreground));
+  font: 9px var(--app-font-mono);
+}
+.automation-result-top b { color: var(--sapphire-soft); font-weight: 500; }
+.automation-task-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 19px 0 15px;
+  color: var(--sapphire-veil);
+  font-size: 15px;
+}
+.automation-task-title .task-check { border-color: var(--sapphire-soft); }
+.automation-task-meta {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 9px 28px;
+  color: hsl(var(--muted-foreground));
+  font: 9px var(--app-font-mono);
+}
+.automation-task-meta strong { margin-left: 5px; color: var(--sapphire-veil); font-weight: 500; }
+.automation-run-note {
+  margin: 14px 0 0;
+  color: var(--sapphire-soft);
+  font: 10px/1.5 var(--app-font-mono);
+}
+@keyframes automation-update {
+  0% { opacity: .55; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.automation-benefits-section,
+.automation-answer-section,
+.automation-faq-section,
+.pricing-comparison-section,
+.pricing-faq-section {
+  padding: 112px 0 120px;
+  border-bottom: 1px solid rgb(46 94 153 / .58);
+}
+.automation-benefits-section { background: rgb(46 94 153 / .08); }
+.automation-benefit-intro { max-width: 690px; }
+.automation-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 67px;
+  border-top: 1px solid rgb(46 94 153 / .7);
+}
+.automation-benefit-grid article {
+  min-height: 230px;
+  padding: 19px 20px 15px 0;
+  border-right: 1px solid rgb(46 94 153 / .55);
+}
+.automation-benefit-grid article + article { padding-left: 20px; }
+.automation-benefit-grid article:last-child { border-right: 0; }
+.automation-benefit-grid span,
+.automation-answer-grid span {
+  color: var(--sapphire-soft);
+  font: 10px var(--app-font-mono);
+}
+.automation-benefit-grid h3,
+.automation-answer-grid h3 { margin: 42px 0 9px; font-size: 18px; }
+.automation-benefit-grid p,
+.automation-answer-grid p {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  line-height: 1.7;
+}
+.automation-answer-heading { max-width: 700px; }
+.answer-lede { max-width: 650px; color: hsl(var(--muted-foreground)); font-size: 18px; line-height: 1.65; }
+.automation-answer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 64px;
+  border-top: 1px solid rgb(46 94 153 / .7);
+}
+.automation-answer-grid > div {
+  min-height: 250px;
+  padding: 19px 25px 20px 0;
+  border-right: 1px solid rgb(46 94 153 / .55);
+}
+.automation-answer-grid > div + div { padding-left: 25px; }
+.automation-answer-grid > div:last-child { border-right: 0; }
+.automation-faq-section,
+.pricing-faq-section { background: rgb(46 94 153 / .08); }
+.automation-faq-layout,
+.pricing-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr);
+  gap: 90px;
+  align-items: start;
+}
+.automation-faq-layout h2,
+.pricing-faq-layout h2 { max-width: 480px; }
+.automation-faq-layout > div > p,
+.pricing-faq-layout > div > p { max-width: 400px; margin-top: 20px; }
+.automation-final-cta,
+.pricing-final-cta {
+  padding: 125px 0;
+  background: rgb(46 94 153 / .12);
+}
+.automation-final-cta h2,
+.pricing-final-cta h2 { max-width: 800px; margin-bottom: 28px; }
+.pricing-hero p { font-size: 18px; }
+.pricing-plans-section { padding-bottom: 90px; }
+.pricing-comparison-section { background: var(--sapphire-navy); }
+.pricing-section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr);
+  gap: 75px;
+  align-items: end;
+  margin-bottom: 57px;
+}
+.comparison-wrap { overflow-x: auto; border: 1px solid rgb(46 94 153 / .7); }
+.comparison-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  background: rgb(46 94 153 / .08);
+  font-size: 13px;
+}
+.comparison-table th,
+.comparison-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgb(46 94 153 / .52);
+  border-right: 1px solid rgb(46 94 153 / .52);
+  text-align: left;
+}
+.comparison-table thead th {
+  color: var(--sapphire-soft);
+  background: rgb(46 94 153 / .2);
+  font: 10px var(--app-font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.comparison-table thead th:not(:first-child) { text-align: center; }
+.comparison-table tbody th { color: var(--sapphire-veil); font-weight: 500; }
+.comparison-table tbody td { color: hsl(var(--muted-foreground)); text-align: center; }
+.comparison-table tbody td svg { display: inline-block; color: var(--sapphire-soft); vertical-align: middle; }
+.comparison-table tr:last-child > * { border-bottom: 0; }
+.comparison-table th:last-child,
+.comparison-table td:last-child { border-right: 0; }
 @media (max-width: 600px) {
   .container-wide { width: calc(100% - 30px); }
   .brand-logo { width: 136px; }
@@ -2483,4 +2815,64 @@ body,
     min-width: 0;
     padding: 8px;
   }
+}
+
+@media (max-width: 900px) {
+  .automation-page-hero-grid,
+  .automation-demo-heading,
+  .pricing-section-heading,
+  .automation-faq-layout,
+  .pricing-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .automation-hero-signal { min-height: 280px; }
+  .automation-demo-heading > p,
+  .pricing-section-heading > p { max-width: 500px; }
+  .automation-benefit-grid { grid-template-columns: repeat(2, 1fr); }
+  .automation-benefit-grid article:nth-child(2) { border-right: 0; }
+  .automation-benefit-grid article:nth-child(n+3) { border-top: 1px solid rgb(46 94 153 / .55); }
+  .automation-answer-grid { grid-template-columns: 1fr; }
+  .automation-answer-grid > div { min-height: 0; border-right: 0; border-bottom: 1px solid rgb(46 94 153 / .55); }
+  .automation-answer-grid > div + div { padding-left: 0; }
+  .automation-answer-grid > div:last-child { border-bottom: 0; }
+  .automation-answer-grid h3 { margin-top: 27px; }
+}
+
+@media (max-width: 600px) {
+  .automation-page-hero,
+  .automation-demo-section,
+  .automation-benefits-section,
+  .automation-answer-section,
+  .automation-faq-section,
+  .pricing-comparison-section,
+  .pricing-faq-section {
+    padding-block: 76px;
+  }
+  .automation-page-hero h1 { font-size: 45px; }
+  .automation-page-hero p { font-size: 15px; }
+  .automation-page-hero .hero-actions { width: min(290px, 100%); }
+  .automation-hero-signal { min-height: 245px; padding: 22px; }
+  .automation-hero-signal strong { margin: 28px 0; font-size: 38px; }
+  .automation-signal-flow { gap: 7px; font-size: 8px; }
+  .automation-builder { padding: 15px; }
+  .automation-builder-head { align-items: flex-start; flex-direction: column; gap: 15px; }
+  .automation-builder-head h3 { font-size: 20px; }
+  .automation-rule-row { grid-template-columns: 1fr; gap: 9px; padding: 14px; }
+  .automation-rule-row label { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .automation-rule-row select { width: 100%; }
+  .automation-benefit-grid { grid-template-columns: 1fr; margin-top: 43px; }
+  .automation-benefit-grid article,
+  .automation-benefit-grid article + article { min-height: 0; padding: 17px 0; border-right: 0; border-top: 1px solid rgb(46 94 153 / .55); }
+  .automation-benefit-grid article:first-child { border-top: 0; }
+  .automation-benefit-grid h3 { margin-top: 24px; }
+  .automation-answer-grid { margin-top: 43px; }
+  .automation-faq-layout,
+  .pricing-faq-layout { gap: 43px; }
+  .pricing-plans-section { padding-block: 76px; }
+  .pricing-final-cta,
+  .automation-final-cta { padding-block: 84px; }
+  .comparison-table { min-width: 620px; font-size: 12px; }
+  .comparison-table th,
+  .comparison-table td { padding: 13px 12px; }
 }

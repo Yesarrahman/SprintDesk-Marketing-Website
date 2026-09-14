@@ -140,7 +140,7 @@ const productLinks = [
   ['Sprint management', '/sprint-management'],
   ['Team Sprint Board', '/features#sprints'],
   ['Command Center', '/features#command-center'],
-  ['Automations', '/features#automations'],
+  ['Automations', '/workflow-automation'],
 ];
 const solutionLinks = [
   ['Managers', '/solutions/managers'],
@@ -208,7 +208,7 @@ function Navbar() {
 
 function Footer() {
   const groups: [string, string[][]][] = [
-    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Team task management', '/team-task-management'], ['Remote team task management', '/remote-team-task-management'], ['Team workload management', '/team-workload-management'], ['Sprint management', '/sprint-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/features#automations']]],
+    ['PRODUCT', [['Features', '/features'], ['How it works', '/how-it-works'], ['Personal task management', '/personal-task-management'], ['Team task management', '/team-task-management'], ['Remote team task management', '/remote-team-task-management'], ['Team workload management', '/team-workload-management'], ['Sprint management', '/sprint-management'], ['Task management', '/features#tasks'], ['Sprint boards', '/features#sprints'], ['Automations', '/workflow-automation']]],
     ['SOLUTIONS', [['Managers', '/solutions/managers'], ['Remote teams', '/solutions/remote-teams'], ['Individuals', '/solutions/individuals']]],
     ['RESOURCES', [['Blog', '/resources/blog'], ['Guides', '/resources/guides'], ['Templates', '/resources/templates']]],
     ['COMPANY', [['About SprintDesk', '/'], ['Contact', '#footer-contact'], ['Privacy', '/privacy'], ['Terms', '/terms'], ['Security', '/security']]],
@@ -423,6 +423,94 @@ function AutomationDemo() {
     <button className={active ? 'button-primary' : 'button-secondary'} style={{ width: '100%', marginTop: 18 }} onClick={() => setActive(!active)} data-testid="button-activate-automation">{active ? 'Automation active ✓' : 'Activate automation'}</button>
     {active && <div className="active-rule"><i /> Rule will run when a task enters In Review</div>}
   </div>;
+}
+
+type AutomationRule = {
+  trigger: string;
+  action: string;
+  assignee: string;
+};
+
+function AutomationRuleBuilder() {
+  const [rule, setRule] = useState<AutomationRule>({
+    trigger: 'In Review',
+    action: 'High',
+    assignee: 'Project Manager',
+  });
+  const [active, setActive] = useState(false);
+  const [runCount, setRunCount] = useState(0);
+  const taskStatus = active ? 'In Review' : 'Todo';
+  const priority = active ? rule.action : 'Normal';
+  const owner = active ? rule.assignee : 'Unassigned';
+
+  const updateRule = (key: keyof AutomationRule, value: string) => {
+    setActive(false);
+    setRule((current) => ({ ...current, [key]: value }));
+  };
+
+  return (
+    <div className="automation-builder" data-testid="workflow-automation-builder">
+      <div className="automation-builder-head">
+        <div>
+          <span className="eyebrow">No-code rule builder</span>
+          <h3>Keep routine updates moving.</h3>
+        </div>
+        <span className={`automation-status ${active ? 'is-active' : ''}`} aria-live="polite">
+          <i /> {active ? 'AUTOMATION ACTIVE' : 'DRAFT RULE'}
+        </span>
+      </div>
+      <div className="automation-rule-stack">
+        <div className="automation-rule-row">
+          <span className="automation-rule-label">WHEN</span>
+          <label>
+            <span>Task status changes to</span>
+            <select value={rule.trigger} onChange={(event) => updateRule('trigger', event.target.value)} aria-label="Task status trigger">
+              <option>In Review</option>
+              <option>Done</option>
+              <option>Blocked</option>
+            </select>
+          </label>
+        </div>
+        <div className="automation-connector" aria-hidden="true">↓</div>
+        <div className="automation-rule-row">
+          <span className="automation-rule-label">THEN</span>
+          <label>
+            <span>Set priority</span>
+            <select value={rule.action} onChange={(event) => updateRule('action', event.target.value)} aria-label="Priority action">
+              <option>High</option>
+              <option>Normal</option>
+              <option>Low</option>
+            </select>
+          </label>
+        </div>
+        <div className="automation-connector" aria-hidden="true">↓</div>
+        <div className="automation-rule-row">
+          <span className="automation-rule-label">AND</span>
+          <label>
+            <span>Assign to</span>
+            <select value={rule.assignee} onChange={(event) => updateRule('assignee', event.target.value)} aria-label="Assignment action">
+              <option>Project Manager</option>
+              <option>Sarah Chen</option>
+              <option>David Okafor</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <button
+        className={active ? 'button-primary' : 'button-secondary'}
+        onClick={() => { setActive(true); setRunCount((count) => count + 1); }}
+        data-testid="button-run-automation"
+      >
+        {active ? 'Rule is running ✓' : 'Activate automation'} <ArrowRight size={14} />
+      </button>
+      <div className={`automation-task-result ${active ? 'is-updated' : ''}`} aria-live="polite">
+        <div className="automation-result-top"><span>RESULTING TASK UPDATE</span>{active && <b>UPDATED JUST NOW</b>}</div>
+        <div className="automation-task-title"><span className="task-check" /> Prepare sprint review</div>
+        <div className="automation-task-meta"><span>STATUS <strong>{taskStatus}</strong></span><span>PRIORITY <strong>{priority}</strong></span><span>OWNER <strong>{owner}</strong></span></div>
+        {active && <p className="automation-run-note">Rule run {runCount}: the task picked up its new context automatically.</p>}
+      </div>
+    </div>
+  );
 }
 
 function WorkspaceSwitcher() {
@@ -973,8 +1061,60 @@ function SolutionPage({ kind }: { kind: SolutionKey }) {
   );
 }
 
+const pricingFaq = [
+  { question: 'Can I start with the Free plan?', answer: 'Yes. Free is designed for individual professionals and includes one Personal Workspace, up to three Team Workspaces, 3–5 members per team, and core Kanban functionality.' },
+  { question: 'What happens when my team grows?', answer: 'Pro adds unlimited team members, Story Points tracking, Time Tracking, and Advanced Swimlanes for growing collaborative teams.' },
+  { question: 'Which plan includes automations?', answer: 'Enterprise includes the No-Code Automations Engine, along with everything in Pro, timesheet exports, and custom client portals.' },
+];
+
 function Pricing() {
-  return <Shell><Meta title="SprintDesk Pricing — Start Free" description="Compare SprintDesk Free, Pro, and Enterprise plans. Start with a personal workspace and grow into team execution." path="/pricing" /><main><section className="inner-hero"><div className="container-wide"><div className="eyebrow">Pricing</div><h1 className="display">A clear place to start.</h1><p>Choose the plan that matches the way you work today. SprintDesk plans are priced per month, with no credit card required to start free.</p></div></section><section className="inner-section" style={{ paddingBottom: 35 }}><div className="container-wide"><PricingCards /></div></section><section className="inner-section" style={{ paddingTop: 35 }}><div className="container-wide"><div className="surface" style={{ padding: '28px 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}><div><div className="eyebrow">Plan fit</div><h2 className="display" style={{ fontSize: 30, margin: '13px 0' }}>Start with the work in front of you.</h2></div><div className="muted" style={{ fontSize: 14 }}><p><strong style={{ color: 'hsl(var(--foreground))' }}>Free</strong> is for individual professionals. <strong style={{ color: 'hsl(var(--foreground))' }}>Pro</strong> is for growing collaborative teams. <strong style={{ color: 'hsl(var(--foreground))' }}>Enterprise</strong> is for teams needing scale and automation.</p><p>Every plan keeps the core journey intact: capture, organize, and move work forward.</p></div></div></div></section></main></Shell>;
+  const comparisonRows = [
+    ['Personal Workspace', '1', '1', '1'],
+    ['Team Workspaces', 'Up to 3', 'Up to 3', 'Up to 3'],
+    ['Team members', '3–5 per team', 'Unlimited', 'Unlimited'],
+    ['Core Kanban functionality', 'Included', 'Included', 'Included'],
+    ['Story Points tracking', '—', 'Included', 'Included'],
+    ['Time Tracking', '—', 'Included', 'Included'],
+    ['Advanced Swimlanes', '—', 'Included', 'Included'],
+    ['No-Code Automations Engine', '—', '—', 'Included'],
+    ['Timesheet exports', '—', '—', 'Included'],
+    ['Custom Client Portals', '—', '—', 'Included'],
+  ];
+  return <Shell>
+    <Meta title="SprintDesk Pricing — Start Simple, Scale with the Work" description="Compare SprintDesk Free, Pro, and Enterprise plans. Start with a personal workspace and grow into team execution, tracking, and automation." path="/pricing" faq={pricingFaq} />
+    <main>
+      <section className="inner-hero pricing-hero"><div className="container-wide"><div className="eyebrow">Pricing</div><h1 className="display">Start simple. Scale when the work does.</h1><p>Choose the SprintDesk workspace that fits how you work today.</p></div></section>
+      <section className="inner-section pricing-plans-section" id="plans"><div className="container-wide"><PricingCards /></div></section>
+      <section className="pricing-comparison-section" data-reveal>
+        <div className="container-wide">
+          <div className="pricing-section-heading"><div><div className="eyebrow">Compare plans</div><h2 className="display">The right amount of structure for the work ahead.</h2></div><p>Every plan keeps the core journey intact: capture, organize, and move work forward.</p></div>
+          <div className="comparison-wrap"><table className="comparison-table"><thead><tr><th scope="col">Workspace capability</th><th scope="col">Free</th><th scope="col">Pro</th><th scope="col">Enterprise</th></tr></thead><tbody>{comparisonRows.map(([feature, free, pro, enterprise]) => <tr key={feature}><th scope="row">{feature}</th><td>{free === 'Included' ? <Check size={15} aria-label="Included" /> : free}</td><td>{pro === 'Included' ? <Check size={15} aria-label="Included" /> : pro}</td><td>{enterprise === 'Included' ? <Check size={15} aria-label="Included" /> : enterprise}</td></tr>)}</tbody></table></div>
+        </div>
+      </section>
+      <section className="pricing-faq-section" data-reveal><div className="container-wide pricing-faq-layout"><div><div className="eyebrow">Questions before you choose</div><h2 className="display">Pricing should be easy to explain.</h2><p>Start with the plan that matches your current context. Move up when your team and workflow need more room.</p></div><div className="faq-list">{pricingFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
+      <section className="pricing-final-cta"><div className="container-wide"><div className="eyebrow">A clear place to start</div><h2 className="display">Start with the work you have today.</h2><Link href="/pricing#plans" className="button-primary" data-testid="link-pricing-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="microcopy">No credit card required.</div></div></section>
+    </main>
+  </Shell>;
+}
+
+function WorkflowAutomation() {
+  const automationFaq = [
+    { question: 'What is workflow automation?', answer: 'Workflow automation is the use of simple rules to make predictable task updates happen automatically when a defined condition is met.' },
+    { question: 'How does task automation work?', answer: 'You choose a trigger, such as a task status changing to In Review, then choose rule-based actions such as setting a priority or assigning the task to a project manager.' },
+    { question: 'When should teams automate workflows?', answer: 'Teams should automate repetitive, consistent updates that do not need a new decision every time. Automation is useful when the same status, priority, or assignment change happens again and again.' },
+    { question: 'How does SprintDesk approach automation?', answer: 'SprintDesk keeps automation no-code and focused: When a task condition changes, Then update its priority, And assign the next owner. The rule stays visible and close to the work.' },
+  ];
+  return <Shell>
+    <Meta title="Workflow Automation Software | SprintDesk" description="Create simple no-code rules that update task status, change priorities, and assign work when the right conditions are met." path="/workflow-automation" faq={automationFaq} />
+    <main>
+      <section className="inner-hero automation-page-hero"><div className="container-wide automation-page-hero-grid"><div><div className="eyebrow">Workflow automation</div><h1 className="display">Let your workflow handle the busywork.</h1><p>Create simple no-code rules that automatically update tasks, change priorities, and assign work when the right conditions are met.</p><div className="hero-actions"><Link href="/pricing" className="button-primary" data-testid="link-automation-start">Start Free <ArrowUpRight size={15} /></Link><Link href="#automation-demo" className="button-secondary">Build a rule <ArrowRight size={15} /></Link></div></div><div className="automation-hero-signal"><span className="eyebrow">IF THIS → THEN THAT</span><strong>Routine updates,<br /><em>handled.</em></strong><div className="automation-signal-flow"><span>STATUS CHANGES</span><i /><span>PRIORITY + OWNER</span></div></div></div></section>
+      <section className="automation-demo-section" id="automation-demo"><div className="container-wide"><div className="automation-demo-heading"><div><div className="eyebrow">Build a rule in seconds</div><h2 className="display">When the condition is met, the next step is already clear.</h2></div><p>Choose the trigger and rule-based actions. Then activate the rule to see the resulting task update.</p></div><AutomationRuleBuilder /></div></section>
+      <section className="automation-benefits-section" data-reveal><div className="container-wide"><div className="automation-benefit-intro"><div className="eyebrow">Small rules. Less coordination.</div><h2 className="display">Make the repeatable parts disappear.</h2></div><div className="automation-benefit-grid">{[['01', 'Reduce repetitive updates.', 'Stop changing the same fields by hand every time a task moves.'], ['02', 'Keep workflows consistent.', 'Use one visible rule for the updates your team agrees should happen together.'], ['03', 'Move tasks automatically.', 'Let status changes carry the right priority and ownership with them.'], ['04', 'Reduce manual coordination.', 'Spend less time reminding people what the workflow already knows.']].map(([number, title, body]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
+      <section className="automation-answer-section" data-reveal><div className="container-wide"><div className="automation-answer-heading"><div className="eyebrow">A direct definition</div><h2 className="display">What is workflow automation?</h2><p className="answer-lede">Workflow automation is the use of rule-based actions to update work automatically when a known condition is met.</p></div><div className="automation-answer-grid"><div><span>01</span><h3>How task automation works</h3><p>Define a When condition, then choose the Then and And actions that should follow. In SprintDesk, those actions focus on status, priority, and assignments.</p></div><div><span>02</span><h3>When teams should automate</h3><p>Automate predictable updates that happen repeatedly and consistently. Keep decisions that need judgment with the people doing the work.</p></div><div><span>03</span><h3>How SprintDesk approaches it</h3><p>SprintDesk uses a visible, no-code rule builder so the workflow stays understandable: In Review can mean High priority and a clear next owner.</p></div></div></div></section>
+      <section className="automation-faq-section"><div className="container-wide automation-faq-layout"><div><div className="eyebrow">Questions teams ask</div><h2 className="display">Automation that stays understandable.</h2><p>Useful automation should make a workflow clearer, not hide it behind a complicated system.</p></div><div className="faq-list">{automationFaq.map(({ question, answer }) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
+      <section className="automation-final-cta"><div className="container-wide"><div className="eyebrow">Rule-based work, made simple</div><h2 className="display">Build the rule once. Let the workflow repeat itself.</h2><Link href="/pricing" className="button-primary" data-testid="link-automation-final-start">Start Free <ArrowUpRight size={15} /></Link><div className="microcopy">No credit card required.</div></div></section>
+    </main>
+  </Shell>;
 }
 
 const articles = [
@@ -1008,6 +1148,7 @@ function Router() {
     <Route path="/team-workload-management" component={TeamWorkloadManagement} />
     <Route path="/sprint-management" component={SprintManagement} />
     <Route path="/remote-team-task-management" component={RemoteTeamTaskManagement} />
+    <Route path="/workflow-automation" component={WorkflowAutomation} />
     <Route path="/solutions/managers"><SolutionPage kind="managers" /></Route>
     <Route path="/solutions/remote-teams"><SolutionPage kind="remote-teams" /></Route>
     <Route path="/solutions/individuals"><SolutionPage kind="individuals" /></Route>
